@@ -1,5 +1,5 @@
 import React from 'react'
-import { View } from 'react-native'
+import { TouchableOpacity, View } from 'react-native'
 import Header from "../reuseableComponents/Header"
 import ImageCard from "../components/ImageCard"
 import {homepage} from '../assests/Icons';
@@ -7,11 +7,16 @@ import HomeStyles from "../assests/styles/components/Home"
 
 
 
-export default function Home() {
+export default function Home(props) {
+    const navigateToSpecificDay=()=>{
+        console.log("herer")
+        props.navigation.navigate('SpecificDay')
+    }
     return (
         <View>
             <Header showBackButton={true}/>
             <View style={HomeStyles.imageContainer}>
+            <TouchableOpacity onPress={navigateToSpecificDay}>
             <ImageCard 
             imageSource={homepage.dummyImage}
             location={"Kochi, India"}
@@ -19,6 +24,7 @@ export default function Home() {
             temperature={"24"}
             />
            
+            </TouchableOpacity>
             </View>
             </View>
     )

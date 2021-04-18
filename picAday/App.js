@@ -2,6 +2,7 @@ import React from 'react'
 import {  Image  } from 'react-native'
 import SplashScreen from "./src/screens/SplashScreen"
 import Home from "./src/screens/Home"
+import SpecificDay from "./src/screens/SpecificDay"
 import Summary from "./src/screens/Summary"
 import Header from "./src/reuseableComponents/Header"
 import { createBottomTabNavigator } from 'react-navigation-tabs';
@@ -30,6 +31,16 @@ const bottomTabNavigator = createBottomTabNavigator(
         
      }
     },
+    SpecificDay:
+    {screen:SpecificDay,
+      // hiding thr bottom tab bar in splashscreen
+      navigationOptions:()=>{
+        return {
+          tabBarVisible:false,
+        };
+        
+     }
+    },
     Summary:
     {screen:Summary,
       navigationOptions: {
@@ -47,6 +58,9 @@ const bottomTabNavigator = createBottomTabNavigator(
     initialRouteName: 'SplashScreen'
   }
 );
+
+
+
  
 
 export default function App() {
