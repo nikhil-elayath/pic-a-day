@@ -1,3 +1,18 @@
+// =========================
+// HOW TO USE THIS COMPONENT
+// =========================
+// backPress props is optional if not provided it will do navigation.goBack()
+{
+    /*   <Header
+          {...props}
+          title="Your Screen's Title"
+          backPress={() => {}}
+       /> 
+  */
+  }
+  
+
+
 import React from 'react'
 import { View, Text, TouchableOpacity, Image } from 'react-native'
 import {header} from '../assests/Icons';
