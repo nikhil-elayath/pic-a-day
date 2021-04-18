@@ -6,6 +6,8 @@
 
 import React , {useEffect}from 'react'
 import { View, Text, Button, TouchableOpacity } from 'react-native'
+import SplashScreenStyles from '../assests/styles/screens/SplashScreen';
+
 
 export default function SplashScreen(props) {
 
@@ -20,10 +22,10 @@ export default function SplashScreen(props) {
 
 
     return (
-        <View >
+        <View style={SplashScreenStyles.brandContainer}>
             <TouchableOpacity >
-        <Text>
-                sPLASHSCREEN
+        <Text >
+                Picaday
                 </Text>
                 </TouchableOpacity>
         </View>
