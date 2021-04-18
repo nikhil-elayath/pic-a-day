@@ -2,6 +2,9 @@ import React from 'react'
 import { View, Text, Image } from 'react-native'
 import Header from "../reuseableComponents/Header"
 import ImageCard from "../components/ImageCard"
+import {homepage} from '../assests/Icons';
+import HomeStyles from "../assests/styles/components/Home"
+
 
 
 export default function Home() {
@@ -9,7 +12,12 @@ export default function Home() {
         <View>
             <Header showBackButton={true}/>
             <Text>Home screen</Text>
-            <ImageCard/>
+            <View style={HomeStyles.imageContainer}>
+            <ImageCard 
+            imageSource={homepage.dummyImage}
+            
+            />
+            </View>
             </View>
     )
 }
