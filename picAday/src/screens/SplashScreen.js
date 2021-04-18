@@ -4,17 +4,28 @@
 
 
 
-import React from 'react'
-import { View, Text, Button } from 'react-native'
+import React , {useEffect}from 'react'
+import { View, Text, Button, TouchableOpacity } from 'react-native'
 
 export default function SplashScreen(props) {
+
+    useEffect(() => {
+    //Navigating to Homescreen after 3 seconds post the screen has loaded 
+        setTimeout(() => {
+            props.navigation.navigate('Home')
+        }, 3000);
+
+      
+    }, [])
+
+
     return (
         <View >
-            {/* <Button > */}
+            <TouchableOpacity >
         <Text>
                 sPLASHSCREEN
                 </Text>
-            {/* </Button> */}
+                </TouchableOpacity>
         </View>
     )
 }

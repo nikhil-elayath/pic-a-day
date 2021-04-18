@@ -13,7 +13,7 @@ const bottomTabNavigator = createBottomTabNavigator(
     // Explore: ExploreScreen,
   },
   {
-    initialRouteName: 'Home'
+    initialRouteName: 'SplashScreen'
   }
 );
  
