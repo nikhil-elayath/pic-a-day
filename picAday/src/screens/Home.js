@@ -15,8 +15,11 @@ export default function Home() {
             <View style={HomeStyles.imageContainer}>
             <ImageCard 
             imageSource={homepage.dummyImage}
-            
+            location={"Kochi, India"}
+            date={"Jan 18"}
+            temperature={"24"}
             />
+           
             </View>
             </View>
     )

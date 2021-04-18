@@ -7,18 +7,18 @@ export default function ImageCard(props) {
         <View style={ImageCardStyles.mainContainer}>
             <ImageBackground source={props.imageSource} style={ImageCardStyles.image}>
                 <View style={ImageCardStyles.dateContainer}>
-                    <Text style={ImageCardStyles.dateText}>Jan </Text>
-                    <Text style={ImageCardStyles.dateText}>18 </Text>
+                    <Text style={ImageCardStyles.dateText}>{props.date} </Text>
+                    {/* <Text style={ImageCardStyles.dateText}>18 </Text> */}
                     </View>
                 <View style={ImageCardStyles.bottomMainContainer}> 
                     <View style={ImageCardStyles.locationContainer}>
                         <Text style={ImageCardStyles.locationText}>
-                        Kochi, India
+                        {props.location}
                         </Text>
                         </View>
                     <View style={ImageCardStyles.temperatureContainer}>
                         <Text style={ImageCardStyles.temperatureText}>
-                        24C
+                        {props.temperature}
                         </Text>
                         </View>
                 </View>
