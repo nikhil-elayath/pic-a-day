@@ -9,7 +9,15 @@ import { createAppContainer } from 'react-navigation';
 const bottomTabNavigator = createBottomTabNavigator(
   {
     Home: Home,
-    SplashScreen:SplashScreen
+    SplashScreen:
+    {screen:SplashScreen,
+      navigationOptions:()=>{
+        return {
+          tabBarVisible:false,
+        };
+     }
+    },
+    
     // Explore: ExploreScreen,
   },
   {
