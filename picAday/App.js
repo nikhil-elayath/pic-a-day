@@ -1,5 +1,5 @@
 import React from 'react'
-import { View, Text, Image } from 'react-native'
+import {  Image  } from 'react-native'
 import SplashScreen from "./src/screens/SplashScreen"
 import Home from "./src/screens/Home"
 import Summary from "./src/screens/Summary"
@@ -14,7 +14,7 @@ const bottomTabNavigator = createBottomTabNavigator(
     Home: {
       screen:Home,
       navigationOptions: {
-        tabBarIcon: ({ tintColor }) => (
+        tabBarIcon: ( props) => (
           <Image  source={bottomTabBar.homeIcon}/>
         )
       }
@@ -25,7 +25,6 @@ const bottomTabNavigator = createBottomTabNavigator(
       navigationOptions:()=>{
         return {
           tabBarVisible:false,
-          showLabel: false
         };
         
      }
@@ -33,7 +32,7 @@ const bottomTabNavigator = createBottomTabNavigator(
     Summary:
     {screen:Summary,
       navigationOptions: {
-        tabBarIcon: () => (
+        tabBarIcon: (props) => (
           <Image  source={bottomTabBar.summaryIcon}/>
         )
       }
