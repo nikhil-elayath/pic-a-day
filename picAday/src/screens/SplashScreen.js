@@ -10,10 +10,11 @@ import { View, Text, Button } from 'react-native'
 export default function SplashScreen(props) {
     return (
         <View >
-            <Button onPress={props.navigation.navigate('Home')}>
-
+            {/* <Button > */}
+        <Text>
                 sPLASHSCREEN
-            </Button>
+                </Text>
+            {/* </Button> */}
         </View>
     )
 }
