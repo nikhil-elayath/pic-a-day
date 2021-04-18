@@ -1,3 +1,28 @@
+// =========================
+// HOW TO USE THIS COMPONENT
+// =========================
+/*imageSource-->image you want to render
+date--> text
+location --> text
+temperature --> text
+
+*/
+
+
+{
+    /*   <ImageCrad
+          {...props}
+          imageSource={image}
+          date={"July 18"}
+          location={"Kocahi, India"}
+          temperature={"14C"}
+       /> 
+  */
+  }
+
+
+
+
 import React from 'react'
 import { View, Text, Image, ImageBackground } from 'react-native'
 import ImageCardStyles from "../assests/styles/components/ImageCard"
