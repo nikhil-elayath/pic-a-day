@@ -11,15 +11,14 @@ const bottomTabNavigator = createBottomTabNavigator(
     Home: Home,
     SplashScreen:
     {screen:SplashScreen,
+      // hiding thr bottom tab bar in splashscreen
       navigationOptions:()=>{
         return {
           tabBarVisible:false,
         };
      }
     },
-    
-    // Explore: ExploreScreen,
-  },
+      },
   {
     initialRouteName: 'SplashScreen'
   }
