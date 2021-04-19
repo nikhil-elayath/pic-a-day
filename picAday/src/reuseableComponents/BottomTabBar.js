@@ -1,14 +1,14 @@
 import React from 'react'
 import { View, Text } from 'react-native'
+import BottomTabBarStyles from "../assests/styles/reuseableComponents/BottomTabBar"
+
 
 export default function BottomTabBar() {
     return (
-        <View style={{  flex: 1,
-            justifyContent: 'flex-end',}}>
-        <View style={{display:"flex", flexDirection:"row", justifyContent:"space-evenly"}}>
-            <Text>BottomTabBar</Text>
-            <Text>BottomTabBar</Text>
-            <Text>BottomTabBar</Text>
+        <View style={BottomTabBarStyles.mainContainer}>
+        <View style={BottomTabBarStyles.bottomMenu}>
+            <Text>Home</Text>
+            <Text>Summary</Text>
         </View>
         </View>
     )
