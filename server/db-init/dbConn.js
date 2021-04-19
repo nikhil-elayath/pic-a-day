@@ -8,7 +8,7 @@ var options = {
     },
   };
   const pg = require("pg-promise")(options);
-  const postgresURL="d"
+  const postgresURL="postgres://localhost:5432/picaday"
   const db = pg(postgresURL);
   
   module.exports = db;
