@@ -36,14 +36,16 @@ export default function Home(props) {
             {/* <Header showBackButton={true}/> */}
             <View style={HomeStyles.imageContainer}>
             {store.userEntry&&store.userEntry.length!=0&&store.userEntry.result.map((item, index) => {
+                console.log("item", item)
                 return (
 
             <TouchableOpacity onPress={navigateToSpecificDay}>
             <ImageCard 
+            key={index}
             imageSource={homepage.dummyImage}
-            location={"Kochi, India"}
-            date={"Jan 18"}
-            temperature={"24"}
+            location={item.image_location}
+            date={item.entry_date}
+            temperature={item.temperature}
             />
            
             </TouchableOpacity>
