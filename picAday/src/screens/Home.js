@@ -15,7 +15,7 @@ export default function Home(props) {
     }
     return (
         <View style={{flex:1}}>
-            <Header showBackButton={true}/>
+            {/* <Header showBackButton={true}/> */}
             <View style={HomeStyles.imageContainer}>
             <TouchableOpacity onPress={navigateToSpecificDay}>
             <ImageCard 
