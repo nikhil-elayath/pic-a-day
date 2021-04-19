@@ -21,16 +21,9 @@ export default function CaptureImage(props) {
     
     
           try {
-             const data = await cameraRef.current.takePictureAsync(options);
+             const data = await cameraRef.current.takePictureAsync();
              props.navigation.navigate('DayEditView', {imageUri:data.uri})
-            //  setImgUrl(data.uri),
-            //  <ImageCard 
-            //  imageSource={data.uri}
-            //  location={"Kochi, India"}
-            //  date={"Jan 18"}
-            //  temperature={"24"}
-            //  />
-            //  Alert.alert('Success', JSON.stringify(data.uri));
+            
           } catch (err) {
             Alert.alert('Error', 'Failed to take picture: ' + (err.message || err));
             return;
@@ -77,7 +70,7 @@ export default function CaptureImage(props) {
         onPress={takePicture}
         >
 
-    <View style={{height:100, backgroundColor:"red"}}>
+    <View >
       <TouchableOpacity  onPress={takePicture}>
           <Text> Capture </Text>
           </TouchableOpacity>
