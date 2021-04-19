@@ -10,7 +10,7 @@ import HomeStyles from "../assests/styles/components/Home"
 
 export default function Home(props) {
     const navigateToSpecificDay=()=>{
-        console.log("herer")
+        console.log("herer", props)
         props.navigation.navigate('SpecificDay')
     }
     return (
@@ -27,7 +27,12 @@ export default function Home(props) {
            
             </TouchableOpacity>
             </View>
-            <BottomTabBar/>
+            <BottomTabBar
+            navigation={props.navigation}
+
+            
+            
+            />
             </View>
     )
 }
