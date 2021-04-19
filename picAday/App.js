@@ -8,69 +8,24 @@ import Header from "./src/reuseableComponents/Header"
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createAppContainer } from 'react-navigation';
 import {bottomTabBar} from './src/assests/Icons';
+import {createStackNavigator} from 'react-navigation-stack';
 
 
 
-const bottomTabNavigator = createBottomTabNavigator(
+
+const navigator = createStackNavigator({
+  Home:Home,
+},
   {
-    Home: {
-      screen:Home,
-      navigationOptions: {
-        tabBarIcon: ( props) => (
-          <Image  source={bottomTabBar.homeIcon}/>
-        )
-      }
-    },
-    SplashScreen:
-    {screen:SplashScreen,
-      // hiding thr bottom tab bar in splashscreen
-      navigationOptions:()=>{
-        return {
-          tabBarVisible:false,
-        };
-        
-     }
-    },
-    SpecificDay:
-    {screen:SpecificDay,
-      // hiding thr bottom tab bar in splashscreen
-      navigationOptions:()=>{
-        return {
-          tabBarVisible:false,
-        };
-        
-     }
-    },
-    Summary:
-    {screen:Summary,
-      navigationOptions: {
-        tabBarIcon: (props) => (
-          <Image  source={bottomTabBar.summaryIcon}/>
-        )
-      }
-
-    },
-      },
-      {
-        tabBarOptions: { showLabel: false }
-      },
-  {
-    initialRouteName: 'SplashScreen'
-  }
-);
+      initialRouteName: 'Home'
+  });
+export default createAppContainer(navigator);
 
 
 
  
 
-export default function App() {
-  return (
-    <AppContainer />
-  
-  )
-}
 
-const AppContainer = createAppContainer(bottomTabNavigator);
 
 
 
