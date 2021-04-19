@@ -5,11 +5,10 @@ import {StyleSheet, Dimensions} from 'react-native';
 const HomeStyles = StyleSheet.create({
     imageContainer:{
         height:"50%",
-
-
-       
-
     },
+    mainContainer:{
+        flex:1
+    }
   
 
 
