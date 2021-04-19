@@ -14,7 +14,7 @@ export default function Home(props) {
         props.navigation.navigate('SpecificDay')
     }
     return (
-        <View>
+        <View style={{flex:1}}>
             <Header showBackButton={true}/>
             <View style={HomeStyles.imageContainer}>
             <TouchableOpacity onPress={navigateToSpecificDay}>
