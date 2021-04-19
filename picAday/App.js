@@ -4,6 +4,7 @@ import SplashScreen from "./src/screens/SplashScreen"
 import Home from "./src/screens/Home"
 import SpecificDay from "./src/screens/SpecificDay"
 import Summary from "./src/screens/Summary"
+import DayEditView from "./src/screens/DayEditView"
 import CaptureImage from "./src/screens/CaptureImage"
 import { createAppContainer } from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
@@ -18,7 +19,8 @@ const navigator = createStackNavigator({
   Summary:Summary,
   SpecificDay:SpecificDay,
   SplashScreen:SplashScreen,
-  CaptureImage:CaptureImage
+  CaptureImage:CaptureImage,
+  DayEditView:DayEditView
 
 
 },

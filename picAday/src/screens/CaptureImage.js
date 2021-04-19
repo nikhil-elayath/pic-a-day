@@ -2,14 +2,16 @@ import React , {useEffect, useRef}  from 'react'
 
 import { View, Text, Platform, TouchableOpacity, Alert } from 'react-native'
 import {RNCamera as Camera}  from 'react-native-camera';
+import ImageCard from "../components/ImageCard"
 
 
-export default function CaptureImage() {
+
+export default function CaptureImage(props) {
+    // const [imgUrl, setImgUrl] = useState(null);
 
     const cameraRef = useRef();
    const takePicture = async () => {
        console.log("from take picture")
-        // if (this.camera && !this.state.takingPic) {
     
           let options = {
             quality: 0.85,
@@ -17,79 +19,30 @@ export default function CaptureImage() {
             forceUpOrientation: true,
           };
     
-        //   this.setState({takingPic: true});
     
           try {
              const data = await cameraRef.current.takePictureAsync(options);
-             console.log("dataaaaaaaaaaaaa", data)
-             Alert.alert('Success', JSON.stringify(data));
+             props.navigation.navigate('DayEditView', {imageUri:data.uri})
+            //  setImgUrl(data.uri),
+            //  <ImageCard 
+            //  imageSource={data.uri}
+            //  location={"Kochi, India"}
+            //  date={"Jan 18"}
+            //  temperature={"24"}
+            //  />
+            //  Alert.alert('Success', JSON.stringify(data.uri));
           } catch (err) {
             Alert.alert('Error', 'Failed to take picture: ' + (err.message || err));
             return;
           } finally {
-            // this.setState({takingPic: false});
           }
-        // }
+        
       };
-
-//    const takePicture=()=> {
-//         camera.capture()
-//           .then((data) => {
-//             console.log(data);
-//             // this.setState({ path: data.path })
-//           })
-//           .catch(err => console.error(err));
-//       }
-
-
-
-    //   const  renderCamera=()=> {
-    //       console.log("from render camera")
-    //     return (
-    //       <Camera
-    //         ref={(cam) => {
-    //           this.camera = cam;
-    //         }}
-    //         // style={styles.preview}
-    //         aspect={Camera.constants.Aspect.fill}
-    //         captureTarget={Camera.constants.CaptureTarget.disk}
-    //       >
-    //         <TouchableHighlight
-    //         //   style={styles.capture}
-    //           onPress={this.takePicture.bind(this)}
-    //           underlayColor="rgba(255, 255, 255, 0.5)"
-    //         >
-    //           <View />
-    //         </TouchableHighlight>
-    //       </Camera>
-    //     );
-    //   }
-
-
-
-    //   const  renderImage=()=> {
-    //     return (
-    //       <View>
-    //         <Image
-    //         //   source={{ uri: this.state.path }}
-    //         //   style={styles.preview}
-    //         />
-    //         <Text
-    //         //   style={styles.cancel}
-    //         //   onPress={() => this.setState({ path: null })}
-    //         >Cancel
-    //         </Text>
-    //       </View>
-    //     );
-    //   }
-
-    //   useEffect(() => {
-    //     renderCamera();
-
-         
-    //   }, [])
-
   
+      const onPicture = async ({uri}) => {
+          console.log("image uri", uri)
+
+      }
 
 
     return (
@@ -100,6 +53,7 @@ export default function CaptureImage() {
         ref={cameraRef}
         style={{height:10}}
         captureAudio={false}
+        onPictureTaken={onPicture}
     
 
 
