@@ -4,7 +4,7 @@ import {
 
   import axios from 'axios';
   import config from '../config';
-const url = config.url + 'diary';
+const url = config.url + 'entry';
 
 
 export const getAllUserEntry = () => async dispatch => {
