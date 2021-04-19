@@ -14,11 +14,11 @@ import BottomTabBar from "../reuseableComponents/BottomTabBar"
 
 
 const navigator = createStackNavigator({
+  SplashScreen:SplashScreen,
   Home:Home,
   BottomTabBar:BottomTabBar,
   Summary:Summary,
   SpecificDay:SpecificDay,
-  SplashScreen:SplashScreen,
   CaptureImage:CaptureImage,
   DayEditView:DayEditView
 

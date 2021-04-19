@@ -4,28 +4,37 @@ import ImageCard from "../components/ImageCard"
 import {homepage} from '../assests/Icons';
 import HomeStyles from "../assests/styles/components/Home"
 import BottomTabBar from "../reuseableComponents/BottomTabBar"
+import { useDispatch, useSelector } from "react-redux";
 
 
 
-export default function SpecificDay() {
+
+export default function SpecificDay(props) {
+    console.log("from specifc", props.navigation.state.params.item)
+    const dispatch = useDispatch();
+    const store = useSelector((state) => state.userEntry);
     return (
         <View style={HomeStyles.mainContainer}>
 
             <View style={HomeStyles.imageContainer}>
             <ImageCard 
             imageSource={homepage.dummyImage}
-            location={"Kochi, India"}
-            date={"Jan 18"}
-            temperature={"24"}
+            location={props.navigation.state.params.item.image_location}
+            date={props.navigation.state.params.item.entry_date}
+            temperature={props.navigation.state.params.item.temperature}
             />
            
             </View>
             <View>
-                <Text> Description for the iamge above</Text>
+                <Text>{props.navigation.state.params.item.image_description} </Text>
                 </View>
 
-                <BottomTabBar/>
+                <BottomTabBar
+            navigation={props.navigation}
+
             
+            
+            />            
         </View>
     )
 }

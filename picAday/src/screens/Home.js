@@ -27,9 +27,9 @@ export default function Home(props) {
 
 
 
-    const navigateToSpecificDay=()=>{
-        console.log("herer", props)
-        props.navigation.navigate('SpecificDay')
+    const navigateToSpecificDay=(item)=>{
+        // console.log("herer", props.navigation.navigate)
+        props.navigation.navigate&&props.navigation.navigate('SpecificDay',{item})
     }
     return (
         <View style={{flex:1}}>
@@ -39,7 +39,7 @@ export default function Home(props) {
                 console.log("item", item)
                 return (
 
-            <TouchableOpacity onPress={navigateToSpecificDay}>
+            <TouchableOpacity onPress={()=>navigateToSpecificDay(item)}>
             <ImageCard 
             key={index}
             imageSource={homepage.dummyImage}
