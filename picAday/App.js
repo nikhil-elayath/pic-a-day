@@ -1,41 +1,19 @@
-import React from 'react'
-import {  Image  } from 'react-native'
-import SplashScreen from "./src/screens/SplashScreen"
-import Home from "./src/screens/Home"
-import SpecificDay from "./src/screens/SpecificDay"
-import Summary from "./src/screens/Summary"
-import DayEditView from "./src/screens/DayEditView"
-import CaptureImage from "./src/screens/CaptureImage"
-import { createAppContainer } from 'react-navigation';
-import {createStackNavigator} from 'react-navigation-stack';
-import BottomTabBar from "./src/reuseableComponents/BottomTabBar"
+// In App.js in a new project
 
+import React, {Component} from 'react';
+import {Provider} from 'react-redux';
+import store from './store';
 
+import Navigator from './src/components/Navigator';
 
+console.disableYellowBox = true;
 
-const navigator = createStackNavigator({
-  Home:Home,
-  BottomTabBar:BottomTabBar,
-  Summary:Summary,
-  SpecificDay:SpecificDay,
-  SplashScreen:SplashScreen,
-  CaptureImage:CaptureImage,
-  DayEditView:DayEditView
-
-
-},
-  {
-      initialRouteName: 'SplashScreen'
-  });
-export default createAppContainer(navigator);
-
-
-
- 
-
-
-
-
-
-
-
+export default class App extends Component {
+  render() {
+    return (
+      <Provider store={store}>
+        <Navigator />
+      </Provider>
+    );
+  }
+}
