@@ -2,6 +2,12 @@ const express = require("express");
 const app = express();
 const db = require("./db-init/dbConn");
 
+const entry = require("./routes/Entry");
+
+app.use("/api/entry/", entry);
+
+
+
 
 
 
