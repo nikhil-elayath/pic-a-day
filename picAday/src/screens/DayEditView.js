@@ -28,11 +28,24 @@ export default function DayEditView(props) {
         setImgLocation(imageLocation)
         let data={imageUri:props.navigation.state.params.imageUri, imageLocation:imageLocation}
         await dispatch(createUserEntry(data)) 
-      })
-      .catch((e) => {
+   
+        
+    })
+    .catch((e) => {
         console.log('Error in getAddressFromCoordinates', e)
-      })
-  })
+    })
+})
+
+// getting temperature
+const openweather_api = "https://api.openweathermap.org/data/2.5/weather?q=Mumbai&appid=cad6b217b338049c1700977e5c93f721&units=metric";
+fetch(openweather_api)
+      .then(res => res.json())
+      .then(async(resJson) => {
+          console.log("weather data", resJson.main.temp)
+          console.log("weather data", resJson)
+      }).catch((e) => {
+        console.log('Error in ', e)
+    })
 
 
             
