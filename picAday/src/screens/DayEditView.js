@@ -26,8 +26,7 @@ export default function DayEditView(props) {
       .then(async(resJson) => {
           let imageLocation=resJson.Response.View[0].Result[0].Location.Address.County+","+resJson.Response.View[0].Result[0].Location.Address.AdditionalData[0].value
         setImgLocation(imageLocation)
-        let data={imageUri:props.navigation.state.params.imageUri, imageLocation:imageLocation}
-        await dispatch(createUserEntry(data)) 
+         
    
         
     })
@@ -41,8 +40,8 @@ const openweather_api = "https://api.openweathermap.org/data/2.5/weather?q=Mumba
 fetch(openweather_api)
       .then(res => res.json())
       .then(async(resJson) => {
-          console.log("weather data", resJson.main.temp)
-          console.log("weather data", resJson)
+          let data={imageUri:props.navigation.state.params.imageUri, imageLocation:imageLocation, imageTemperature:resJson.main.temp}
+        await dispatch(createUserEntry(data))
       }).catch((e) => {
         console.log('Error in ', e)
     })
