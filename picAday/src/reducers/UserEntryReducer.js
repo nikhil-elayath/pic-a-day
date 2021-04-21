@@ -6,10 +6,12 @@ import {
   
   const initalState = {
     userEntry: [],
+    userEntryId:""
    
   };
   
   export default function(state = initalState, action) {
+    console.log("from reducer",action.payload)
     switch (action.type) {
       case GET_ALL_USER_ENTRY:
         return {
@@ -19,7 +21,7 @@ import {
       case CREATE_USER_ENTRY:
         return {
           ...state,
-          userEntry: action.payload,
+          userEntryId: action.payload,
         };
       default:
         return state;

@@ -15,7 +15,7 @@ import { getAllUserEntry } from "../actions/UserEntry";
 export default function Home(props) {
     const dispatch = useDispatch();
     const store = useSelector((state) => state.userEntry);
-    console.log("stoe", store)
+    // console.log("stoe", store)
 
     useEffect(() => {
         //Navigating to Homescreen after 3 seconds post the screen has loaded 
@@ -28,7 +28,6 @@ export default function Home(props) {
 
 
     const navigateToSpecificDay=(item)=>{
-        // console.log("herer", props.navigation.navigate)
         props.navigation.navigate&&props.navigation.navigate('SpecificDay',{item})
     }
     return (
@@ -36,7 +35,6 @@ export default function Home(props) {
             {/* <Header showBackButton={true}/> */}
             <View style={HomeStyles.imageContainer}>
             {store.userEntry&&store.userEntry.length!=0&&store.userEntry.result.map((item, index) => {
-                console.log("item", item)
                 return (
 
             <TouchableOpacity onPress={()=>navigateToSpecificDay(item)}>

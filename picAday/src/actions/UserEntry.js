@@ -1,6 +1,7 @@
 import {
     GET_ALL_USER_ENTRY,
-    CREATE_USER_ENTRY
+    CREATE_USER_ENTRY,
+    UPDATE_USER_ENTRY_BY_ID
   } from './Types';
 
   import axios from 'axios';
@@ -30,6 +31,22 @@ export const createUserEntry = newData =>  dispatch => {
       .then(res => {
         dispatch({
           type: CREATE_USER_ENTRY,
+          payload: res.data.data,
+        });
+      })
+      .catch(err => {
+          console.log("error from action", err)
+        // dispatch({type: ERROR, payload: err.response.data.message});
+      });
+  };
+export const updateUserEntryById = data =>  dispatch => {
+  console.log("updateUserEntryById actions", data)
+
+    return axios
+    .put(url + "/update-entry", data)
+      .then(res => {
+        dispatch({
+          type: UPDATE_USER_ENTRY_BY_ID,
           payload: res.data.data,
         });
       })

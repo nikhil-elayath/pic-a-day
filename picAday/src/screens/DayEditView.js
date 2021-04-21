@@ -1,34 +1,38 @@
-import React , {useEffect, useRef, useState}  from 'react'
+import React , {useEffect, useState}from 'react'
 import { View, Text, Image, TextInput } from 'react-native'
-import { createUserEntry } from "../actions/UserEntry";
+import { createUserEntry, updateUserEntryById } from "../actions/UserEntry";
 import { useDispatch, useSelector } from "react-redux";
 
 
 
 export default function DayEditView(props) {
     const dispatch = useDispatch();
+    const store = useSelector((state) => state.userEntry.userEntryId);
 
-    console.log("day edit view", props.navigation.state.params.imageUri)
-    const [imgUri, setImageUri] = useState(null);
-    const [imageDescription, setImageDescription] = useState('');
+    // use effect to write as soon as component is mounted
+    // action call to write the new entry to database and return the id
+    // keep updating that id for future changes of iamge or text
+    // use effect should be rendered only when the image uri is changed
+    useEffect(async() => {
+        let data={imageUri:props.navigation.state.params.imageUri}
+        dispatch(createUserEntry(data))    
+
+          
+        },[])
+  
 
     const onChangeTextValue=async(text)=>{
-        console.log("value", text)
-       await setImageDescription(text)
-        // call to db to upload the image uri and description
+ 
         let data={
-            imageUri:imgUri,
-            imageDescription:imageDescription
+            imageUri:props.navigation.state.params.imageUri,
+            imageDescription:text,
+            userEntryId:store.id&&store.id
         }
-       await dispatch(createUserEntry(data))
+        // Updating the previous entry which was created and using that id
+       await dispatch(updateUserEntryById(data))
 
     }
 
-    useEffect(() => {
-        //Navigating to Homescreen after 3 seconds post the screen has loaded 
-        setImageUri(props.navigation.state.params.imageUri)
-          
-        }, [props.navigation.state.params.imageUri])
     
     return (
         <>
