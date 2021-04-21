@@ -24,8 +24,8 @@ export default function DayEditView(props) {
                 fetch(url)
       .then(res => res.json())
       .then(async(resJson) => {
-          let imageLocation=resJson.Response.View[0].Result[0].Location.Address.County+","+resJson.Response.View[0].Result[0].Location.Address.AdditionalData[0].value
-        setImgLocation(imageLocation)
+          let NewimageLocation=await resJson.Response.View[0].Result[0].Location.Address.County+","+resJson.Response.View[0].Result[0].Location.Address.AdditionalData[0].value
+        await setImgLocation(NewimageLocation)
          
    
         

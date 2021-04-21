@@ -41,7 +41,7 @@ router.post("/create-entry", async (req, res, next) => {
     try{
       var imageUri=req.body.imageUri
       var imageDescription=req.body.imageDescription
-      var imageDescription=req.body.imageDescription
+      var imageLocation=req.body.imageLocation
       var imageTemperature=req.body.imageTemperature
     }
     catch (error) {
