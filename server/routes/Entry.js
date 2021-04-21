@@ -41,6 +41,7 @@ router.post("/create-entry", async (req, res, next) => {
     try{
       var imageUri=req.body.imageUri
       var imageDescription=req.body.imageDescription
+      var imageLocation=req.body.imageLocation
     }
     catch (error) {
       res.status(400).json({
@@ -51,7 +52,7 @@ router.post("/create-entry", async (req, res, next) => {
    
     try {
       const result = await db.any(
-        `INSERT INTO user_entry(image_uri, image_description, entry_date, image_location, temperature) VALUES('${imageUri}', '${imageDescription}','${imageDescription}','${imageDescription}','${imageDescription}')  RETURNING id`
+        `INSERT INTO user_entry(image_uri, image_description, entry_date, image_location, temperature) VALUES('${imageUri}', '${imageDescription}','${imageDescription}','${imageLocation}','${imageDescription}')  RETURNING id`
       );
       console.log("redult", result)
       res.status(200).json({
@@ -88,7 +89,7 @@ router.post("/create-entry", async (req, res, next) => {
    
     try {
       const result = await db.any(
-        `update user_entry set image_uri='${imageUri}', image_description='${imageDescription}', entry_date='${imageDescription}', image_location='${imageDescription}',temperature='${imageDescription}' where id = '${userEntryId}';`
+        `update user_entry set image_uri='${imageUri}', image_description='${imageDescription}', entry_date='${imageDescription}', temperature='${imageDescription}' where id = '${userEntryId}';`
       );
 
 

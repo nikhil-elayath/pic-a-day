@@ -7,7 +7,6 @@ import ImageCard from "../components/ImageCard"
 
 
 export default function CaptureImage(props) {
-    // const [imgUrl, setImgUrl] = useState(null);
 
     const cameraRef = useRef();
    const takePicture = async () => {

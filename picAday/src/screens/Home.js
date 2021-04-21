@@ -40,7 +40,7 @@ export default function Home(props) {
             <TouchableOpacity onPress={()=>navigateToSpecificDay(item)}>
             <ImageCard 
             key={index}
-            imageSource={homepage.dummyImage}
+            imageSource={item.image_uri}
             location={item.image_location}
             date={item.entry_date}
             temperature={item.temperature}
