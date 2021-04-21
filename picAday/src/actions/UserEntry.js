@@ -18,13 +18,15 @@ export const getAllUserEntry = () => async dispatch => {
         });
       })
       .catch(err => {
-          console.log("error from action")
+          console.log("error from action", err)
         // dispatch({type: ERROR, payload: err.response.data.message});
       });
   };
-export const createUserEntry = (data) => async dispatch => {
+export const createUserEntry = newData =>  dispatch => {
+  console.log("create user entry actions", newData)
+
     return axios
-      .post(url + '/create-entry',data)
+    .post(url + "/create-entry", newData)
       .then(res => {
         dispatch({
           type: CREATE_USER_ENTRY,
@@ -32,7 +34,7 @@ export const createUserEntry = (data) => async dispatch => {
         });
       })
       .catch(err => {
-          console.log("error from action")
+          console.log("error from action", err)
         // dispatch({type: ERROR, payload: err.response.data.message});
       });
   };

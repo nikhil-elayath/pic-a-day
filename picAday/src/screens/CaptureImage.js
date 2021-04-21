@@ -22,6 +22,7 @@ export default function CaptureImage(props) {
     
           try {
              const data = await cameraRef.current.takePictureAsync();
+            //  call to database
              props.navigation.navigate('DayEditView', {imageUri:data.uri})
             
           } catch (err) {

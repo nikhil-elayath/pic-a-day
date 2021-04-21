@@ -12,7 +12,7 @@ router.get("/all-entry", async (req, res, next) => {
       const result = await db.any(
         `select * from user_entry`
       );
-      console.log("result", result)
+      // console.log("result", result)
       if (result.length == 0) {
         res.status(400).json({
           status: 400,
@@ -36,26 +36,26 @@ router.get("/all-entry", async (req, res, next) => {
 
   // create a new entry
 router.post("/create-entry", async (req, res, next) => {
-    console.log("create entry api")
+    console.log("create entry api", req.body)
+
+    try{
+      var imageUri=req.body.imageUri
+      var imageDescription=req.body.imageDescription
+    }
+    catch (error) {
+      res.status(400).json({
+        status: 400,
+        message: "Data missing",
+      });
+    }
    
     try {
-      const result = await db.one(
-        `INSERT INTO user_entry(image_uri, image_description, entry_date, image_location, temperature) VALUES(${userId}, ${userId},${userId},${userId},${userId})`,
+      const result = await db.none(
+        `INSERT INTO user_entry(image_uri, image_description, entry_date, image_location, temperature) VALUES('${imageUri}', '${imageDescription}','${imageDescription}','${imageDescription}','${imageDescription}')`
       );
-      console.log("result", result)
-      if (result.length == 0) {
-        res.status(400).json({
-          status: 400,
-          message: "No Entry found",
-        });
-      } else {
-        res.status(200).json({
-          status: 200,
-          message: "Fecthed all entry successfully",
-          data: { result },
-        });
-      }
+      
     } catch (error) {
+      console.log(error)
       res.status(400).json({
         status: 400,
         message: "Error",
