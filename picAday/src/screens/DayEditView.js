@@ -29,8 +29,10 @@ export default function DayEditView(props) {
   return (
     <>
       <View>
-        <Text>DayEditView</Text>
-        <Image style={{height: '50%'}} source={{uri: props.navigation.state.params.imageUri}} />
+        <Image
+          style={{height: '50%'}}
+          source={{uri: props.navigation.state.params.imageUri}}
+        />
         <TextInput
           style={{color: 'black', backgroundColor: 'red'}}
           placeholder={'Type your thoughts...'}
