@@ -4,7 +4,8 @@ const BottomTabBar = StyleSheet.create({
     mainContainer:{
         flex: 1,
         justifyContent: 'flex-end',
-        padding:10
+        position: 'absolute', left: 0, right: 0, bottom: 0
+     
     },
     bottomMenu:{
         display:"flex",
