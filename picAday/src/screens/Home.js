@@ -7,6 +7,8 @@ import {homepage} from '../assests/Icons';
 import HomeStyles from '../assests/styles/components/Home';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllUserEntry} from '../actions/UserEntry';
+import ImageCard from '../components/ImageCard';
+
 
 export default function Home(props) {
   const dispatch = useDispatch();
@@ -42,6 +44,7 @@ export default function Home(props) {
             );
           })}
       </View>
+
       <BottomTabBar navigation={props.navigation} />
     </View>
   );
