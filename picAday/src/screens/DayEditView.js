@@ -3,6 +3,7 @@ import {View, Text, Image, TextInput} from 'react-native';
 import {createUserEntry, updateUserEntryById} from '../actions/UserEntry';
 import {useDispatch, useSelector} from 'react-redux';
 import Geolocation from 'react-native-geolocation-service';
+import ImageCard from '../components/ImageCard';
 
 export default function DayEditView(props) {
   const dispatch = useDispatch();
@@ -67,13 +68,13 @@ export default function DayEditView(props) {
   return (
     <>
       <View>
-        <Text>DayEditView</Text>
-        <Image
-          style={{height: '50%'}}
-          source={{uri: props.navigation.state.params.imageUri}}
+        <ImageCard
+          imageSource={item.image_uri}
+          location={item.image_location}
+          date={item.entry_date}
+          temperature={item.temperature}
         />
         <TextInput
-          style={{color: 'black', backgroundColor: 'red'}}
           placeholder={'Type your thoughts...'}
           placeholderTextColor={'black'}
           onEndEditing={text => onChangeTextValue(text.nativeEvent.text)}

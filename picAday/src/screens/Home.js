@@ -1,13 +1,10 @@
 import React, {useEffect} from 'react';
 import {TouchableOpacity, View} from 'react-native';
-import Header from '../reuseableComponents/Header';
 import BottomTabBar from '../reuseableComponents/BottomTabBar';
 import ImageCard from '../components/ImageCard';
-import {homepage} from '../assests/Icons';
 import HomeStyles from '../assests/styles/components/Home';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllUserEntry} from '../actions/UserEntry';
-import ImageCard from '../components/ImageCard';
 
 
 export default function Home(props) {
