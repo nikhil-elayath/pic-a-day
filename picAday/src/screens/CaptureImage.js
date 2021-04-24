@@ -12,51 +12,60 @@ export default function CaptureImage(props) {
   const dispatch = useDispatch();
 
   const getImageLocationAndTemperature = async imageUri => {
-    console.log('start', imageUri);
+    console.log(
+      'start',
+      props.navigation.state && props.navigation.state.params,
+    );
     try {
       var imageLocation;
-      console.log("within try")
+      console.log('within try');
 
       // getting the location
-     await Geolocation.getCurrentPosition(async position => {
-       console.log("within geolocation")
-        const url = `https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?apiKey=VQCnCJVY_c9-7ezRY5xlhmh_QtFkt8hC-dlYMyc-4Bw&mode=retrieveAddresses&prox=${position.coords.latitude},${position.coords.longitude}`;
-        await fetch(url)
-          .then(res => console.log(res))
-          .then(async resJson => {
-            imageLocation =
-              resJson.Response.View[0].Result[0].Location.Address.County +
-              ',' +
-              resJson.Response.View[0].Result[0].Location.Address
-                .AdditionalData[0].value;
-            console.log('image above', imageLocation);
-          })
-          .catch(e => {
-            console.log('Error in getAddressFromCoordinates', e);
-          });
-      });
+      // await Geolocation.getCurrentPosition(async position => {
+      //   console.log('within geolocation');
+      //   const url = `https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?apiKey=VQCnCJVY_c9-7ezRY5xlhmh_QtFkt8hC-dlYMyc-4Bw&mode=retrieveAddresses&prox=${position.coords.latitude},${position.coords.longitude}`;
+      //   await fetch(url)
+      //     .then(res => console.log(res))
+      //     .then(async resJson => {
+      //       imageLocation =
+      //         resJson.Response.View[0].Result[0].Location.Address.County +
+      //         ',' +
+      //         resJson.Response.View[0].Result[0].Location.Address
+      //           .AdditionalData[0].value;
+      //       console.log('image above', imageLocation);
+      //     })
+      //     .catch(e => {
+      //       console.log('Error in getAddressFromCoordinates', e);
+      //     });
+      // });
 
       // getting temperature
       const openweather_api =
         'https://api.openweathermap.org/data/2.5/weather?q=Mumbai&appid=cad6b217b338049c1700977e5c93f721&units=metric';
-      fetch(openweather_api)
+      await fetch(openweather_api)
         .then(res => res.json())
         .then(async resJson => {
           let data = {
             imageUri: imageUri,
             imageLocation: imageLocation,
             imageTemperature: resJson.main.temp,
+            userEntryId:
+              props.navigation.state &&
+              props.navigation.state.params &&
+              props.navigation.state.params.userEntryId,
           };
           console.log('printing data', data);
-          await dispatch(createUserEntry(data));
+          props.navigation.state &&
+          props.navigation.state.params &&
+          props.navigation.state.params.userEntryId
+            ? await dispatch(updateUserEntryById(data))
+            : await dispatch(createUserEntry(data));
         })
         .catch(e => {
           console.log('Error in ', e);
         });
 
       // navigating to day edit view
-      props.navigation.navigate('DayEditView');
-
     } catch (err) {
       console.log(err);
     }
@@ -73,11 +82,12 @@ export default function CaptureImage(props) {
     try {
       const data = await cameraRef.current.takePictureAsync();
       await getImageLocationAndTemperature(data.uri);
+      await props.navigation.navigate('DayEditView');
+
       //  call to database
     } catch (err) {
       Alert.alert('Error', 'Failed to take picture: ' + (err.message || err));
       return;
-    } finally {
     }
   };
 

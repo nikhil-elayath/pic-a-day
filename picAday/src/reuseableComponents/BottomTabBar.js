@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import BottomTabBarStyles from '../assests/styles/reuseableComponents/BottomTabBar';
 import {bottomTabBar} from '../assests/Icons';
 
+
 export default function BottomTabBar(props) {
   const navigateToScreen = screenName => {
     props.navigation.navigate(screenName);

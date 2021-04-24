@@ -18,7 +18,7 @@ export default function SpecificDay(props) {
 
             <View style={HomeStyles.imageContainer}>
             <ImageCard 
-            imageSource={item.image_uri}
+            // imageSource={item.image_uri}
             location={props.navigation.state.params.item.image_location}
             date={props.navigation.state.params.item.entry_date}
             temperature={props.navigation.state.params.item.temperature}

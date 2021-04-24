@@ -3,8 +3,14 @@ import {View, TextInput} from 'react-native';
 import {updateUserEntryById, getUserEntryById} from '../actions/UserEntry';
 import {useDispatch, useSelector} from 'react-redux';
 import ImageCard from '../components/ImageCard';
+import DayEditViewStyles from '../assests/styles/screens/DayEditView';
+import BottomTabBar from '../reuseableComponents/BottomTabBar';
 
 export default function DayEditView(props) {
+  const navigateToScreen = screenName => {
+    console.log("button presses")
+    props.navigation.navigate(screenName,{userEntryId:store.id});
+  };
   const dispatch = useDispatch();
   const store = useSelector(state => state.userEntry.userEntryId);
   const specificUserEntry = useSelector(
@@ -12,15 +18,16 @@ export default function DayEditView(props) {
   );
 
   // use effect to fetch the data by a particular userentry id which is recieved in params from capture iamge image screen4
-  useEffect(() => {
+  useEffect(async() => {
+    console.log("from day edit view")
     {
-      dispatch(
+      await dispatch(
         getUserEntryById(
           props.entryId ? props.entryId : store.id != undefined && store.id,
         ),
       );
     }
-  }, [store.id,props.entryId]);
+  }, [store.id, props.entryId&&props.entryId]);
 
   const onChangeTextValue = async text => {
     let data = {
@@ -38,7 +45,7 @@ export default function DayEditView(props) {
   return (
     <>
       <View>
-        <View style={{backgroundColor: 'blue', height: 50}}>
+        <View style={DayEditViewStyles.imageCardContainer}>
           <ImageCard
             imageSource={
               specificUserEntry.result &&
@@ -60,14 +67,25 @@ export default function DayEditView(props) {
               specificUserEntry.result[0] &&
               specificUserEntry.result[0].temperature
             }
+            showCaptureButton={true}
+            captureImage={()=>navigateToScreen('CaptureImage')}
+          />
+       
+        </View>
+        <View style={DayEditViewStyles.textInputContainer}>
+          <TextInput
+            placeholder={'Type your thoughts...'}
+            placeholderTextColor={'black'}
+            value={
+              specificUserEntry.result &&
+              specificUserEntry.result[0] &&
+              specificUserEntry.result[0].image_description
+                ? specificUserEntry.result[0].image_description
+                : ''
+            }
+            onEndEditing={text => onChangeTextValue(text.nativeEvent.text)}
           />
         </View>
-        <TextInput
-          placeholder={'Type your thoughts...'}
-          placeholderTextColor={'black'}
-          style={{backgroundColor: 'red'}}
-          onEndEditing={text => onChangeTextValue(text.nativeEvent.text)}
-        />
       </View>
     </>
   );

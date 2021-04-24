@@ -19,6 +19,8 @@ export default function Home(props) {
 
   const navigateToSpecificDay = item => {
     // logic to check the date and navigate accordingly
+    // if date == current date navigate to day edit view as entry is editable
+    // otherwise navigate to specific day and editing is not available
     props.navigation.navigate &&
       props.navigation.navigate('SpecificDay', {item});
   };
