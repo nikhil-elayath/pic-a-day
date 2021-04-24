@@ -12,7 +12,6 @@ export default function CaptureImage(props) {
   const dispatch = useDispatch();
 
   const getImageLocationAndTemperature = async imageUri => {
-   
     try {
       var imageLocation;
       console.log('within try');
@@ -65,7 +64,6 @@ export default function CaptureImage(props) {
         .catch(e => {
           console.log('Error in ', e);
         });
-
     } catch (err) {
       console.log(err);
     }
