@@ -26,7 +26,11 @@ export default function DayEditView(props) {
     {
       await dispatch(
         getUserEntryById(
-          props.entryId ? props.entryId : store.id != undefined && store.id,
+          props.navigation.navigate &&
+            props.navigation.navigate.state &&
+            props.navigation.navigate.state.params.userEntryId
+            ? props.navigation.navigate.state.params.userEntryId
+            : store.id != undefined && store.id,
         ),
       );
     }

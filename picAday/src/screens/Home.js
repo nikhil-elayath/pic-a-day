@@ -6,11 +6,10 @@ import HomeStyles from '../assests/styles/components/Home';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllUserEntry} from '../actions/UserEntry';
 
-
 export default function Home(props) {
   const dispatch = useDispatch();
   const store = useSelector(state => state.userEntry);
-  console.log("stoe", store.userEntry)
+  console.log('stoe', store.userEntry);
 
   useEffect(() => {
     //Navigating to Homescreen after 3 seconds post the screen has loaded
@@ -21,8 +20,19 @@ export default function Home(props) {
     // logic to check the date and navigate accordingly
     // if date == current date navigate to day edit view as entry is editable
     // otherwise navigate to specific day and editing is not available
-    props.navigation.navigate &&
+    console.log('item', item);
+
+    let currentDate = new Date();
+    console.log('current Dtae', currentDate.toISOString().split('T')[0]);
+    console.log(item.entry_date.split('T')[0]);
+    if (
+      currentDate.toISOString().split('T')[0] == item.entry_date.split('T')[0]
+    ) {
+      props.navigation.navigate('DayEditView', {userEntryId: item.id});
+    } else {
       props.navigation.navigate('SpecificDay', {item});
+    }
+ 
   };
   return (
     <View style={{flex: 1}}>

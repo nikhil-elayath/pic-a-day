@@ -80,7 +80,7 @@ router.post("/create-entry", async (req, res, next) => {
     var date = new Date();
 
     var mon = "" + (date.getMonth() + 1);
-    var dy = "" + date.getDate();
+    var dy = "" + (date.getDate()+1);
     var yr = date.getFullYear();
 
     if (mon.length < 2) mon = "0" + mon;
