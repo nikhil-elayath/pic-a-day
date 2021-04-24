@@ -34,11 +34,12 @@ router.get("/all-entry", async (req, res, next) => {
 router.get("/get-entry/:id", async (req, res, next) => {
   console.log("get entry by id", req.params);
 
-
   try {
-    var userEntryId=req.params.id
-    const result = await db.any(`select * from user_entry where id = '${userEntryId}';`);
-    console.log("result", result)
+    var userEntryId = req.params.id;
+    const result = await db.any(
+      `select * from user_entry where id = '${userEntryId}';`
+    );
+    console.log("result", result);
     if (result.length == 0) {
       res.status(400).json({
         status: 400,

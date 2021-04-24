@@ -12,32 +12,29 @@ export default function CaptureImage(props) {
   const dispatch = useDispatch();
 
   const getImageLocationAndTemperature = async imageUri => {
-    console.log(
-      'start',
-      props.navigation.state && props.navigation.state.params,
-    );
+   
     try {
       var imageLocation;
       console.log('within try');
 
       // getting the location
-      // await Geolocation.getCurrentPosition(async position => {
-      //   console.log('within geolocation');
-      //   const url = `https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?apiKey=VQCnCJVY_c9-7ezRY5xlhmh_QtFkt8hC-dlYMyc-4Bw&mode=retrieveAddresses&prox=${position.coords.latitude},${position.coords.longitude}`;
-      //   await fetch(url)
-      //     .then(res => console.log(res))
-      //     .then(async resJson => {
-      //       imageLocation =
-      //         resJson.Response.View[0].Result[0].Location.Address.County +
-      //         ',' +
-      //         resJson.Response.View[0].Result[0].Location.Address
-      //           .AdditionalData[0].value;
-      //       console.log('image above', imageLocation);
-      //     })
-      //     .catch(e => {
-      //       console.log('Error in getAddressFromCoordinates', e);
-      //     });
-      // });
+      await Geolocation.getCurrentPosition(async position => {
+        console.log('within geolocation');
+        const url = `https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?apiKey=VQCnCJVY_c9-7ezRY5xlhmh_QtFkt8hC-dlYMyc-4Bw&mode=retrieveAddresses&prox=${position.coords.latitude},${position.coords.longitude}`;
+        await fetch(url)
+          .then(res => console.log(res))
+          .then(async resJson => {
+            imageLocation =
+              resJson.Response.View[0].Result[0].Location.Address.County +
+              ',' +
+              resJson.Response.View[0].Result[0].Location.Address
+                .AdditionalData[0].value;
+            console.log('image above', imageLocation);
+          })
+          .catch(e => {
+            console.log('Error in getAddressFromCoordinates', e);
+          });
+      });
 
       // getting temperature
       const openweather_api =
@@ -54,7 +51,11 @@ export default function CaptureImage(props) {
               props.navigation.state.params &&
               props.navigation.state.params.userEntryId,
           };
-          console.log('printing data', data);
+
+          // cehcking whether it is for updating the existing the image
+          // if that is the case then this component is called from day edit view and user entry will be present in the params
+          // so if that is present it means this is an update requeta nd update action will be called along with the userEntryId
+          // iF that is not th case createEnry action is called to create a new user entry in the db
           props.navigation.state &&
           props.navigation.state.params &&
           props.navigation.state.params.userEntryId
@@ -65,7 +66,6 @@ export default function CaptureImage(props) {
           console.log('Error in ', e);
         });
 
-      // navigating to day edit view
     } catch (err) {
       console.log(err);
     }
