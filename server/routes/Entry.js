@@ -69,6 +69,7 @@ router.post("/create-entry", async (req, res, next) => {
     var imageDescription = req.body.imageDescription;
     var imageLocation = req.body.imageLocation;
     var imageTemperature = req.body.imageTemperature;
+    var entryCreationDate= new Date()
   } catch (error) {
     res.status(400).json({
       status: 400,
@@ -78,7 +79,7 @@ router.post("/create-entry", async (req, res, next) => {
 
   try {
     const result = await db.any(
-      `INSERT INTO user_entry(image_uri, image_description, entry_date, image_location, temperature) VALUES('${imageUri}', '${imageDescription}','${imageDescription}','${imageLocation}','${imageTemperature}')  RETURNING id`
+      `INSERT INTO user_entry(image_uri, image_description, entry_date, image_location, temperature) VALUES('${imageUri}', '${imageDescription}','${entryCreationDate}','${imageLocation}','${imageTemperature}')  RETURNING id`
     );
     console.log("redult", result);
     res.status(200).json({
