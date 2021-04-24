@@ -14,7 +14,7 @@ export default function CaptureImage(props) {
   const getImageLocationAndTemperature = async imageUri => {
     try {
       var imageLocation;
-      console.log('within try');
+      console.log('within try', props.navigation&&props.navigation.state&&props.navigation.state.params);
 
       // getting the location
       await Geolocation.getCurrentPosition(async position => {
@@ -45,11 +45,14 @@ export default function CaptureImage(props) {
             imageUri: imageUri,
             imageLocation: imageLocation,
             imageTemperature: resJson.main.temp,
+            imageDescription:props.navigation.navigate.state&&props.navigation.navigate.state.params.imageData.image_description,
+            userEntryDate:props.navigation.navigate.state&&props.navigation.navigate.state.params.imageData.entry_date,
             userEntryId:
               props.navigation.state &&
               props.navigation.state.params &&
-              props.navigation.state.params.userEntryId,
+              props.navigation.state.params.imageData.id,
           };
+          console.log("data fro update",data)
 
           // cehcking whether it is for updating the existing the image
           // if that is the case then this component is called from day edit view and user entry will be present in the params
@@ -57,7 +60,7 @@ export default function CaptureImage(props) {
           // iF that is not th case createEnry action is called to create a new user entry in the db
           props.navigation.state &&
           props.navigation.state.params &&
-          props.navigation.state.params.userEntryId
+          props.navigation.state.params.imageData
             ? await dispatch(updateUserEntryById(data))
             : await dispatch(createUserEntry(data));
         })

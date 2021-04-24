@@ -12,7 +12,7 @@ export default function DayEditView(props) {
 
   const navigateToScreen = screenName => {
     console.log('button presses');
-    props.navigation.navigate(screenName, {userEntryId: store.id});
+    props.navigation.navigate(screenName, {imageData:specificUserEntry.result[0]});
   };
   const dispatch = useDispatch();
   const store = useSelector(state => state.userEntry.userEntryId);
