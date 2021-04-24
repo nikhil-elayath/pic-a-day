@@ -7,6 +7,7 @@ const DayEditViewStyles = StyleSheet.create({
   },
   textInputContainer: {
     marginTop: '10%',
+    paddingLeft:10
   },
   bottomTabContainer: {
     zIndex: 1,
