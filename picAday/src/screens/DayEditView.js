@@ -14,9 +14,13 @@ export default function DayEditView(props) {
   // use effect to fetch the data by a particular userentry id which is recieved in params from capture iamge image screen4
   useEffect(() => {
     {
-      store.id != undefined && dispatch(getUserEntryById(store.id));
+      dispatch(
+        getUserEntryById(
+          props.entryId ? props.entryId : store.id != undefined && store.id,
+        ),
+      );
     }
-  }, [store.id]);
+  }, [store.id,props.entryId]);
 
   const onChangeTextValue = async text => {
     let data = {
@@ -34,31 +38,34 @@ export default function DayEditView(props) {
   return (
     <>
       <View>
-        <ImageCard
-          imageSource={
-            specificUserEntry.result &&
-            specificUserEntry.result[0] &&
-            specificUserEntry.result[0].image_uri
-          }
-          location={
-            specificUserEntry.result &&
-            specificUserEntry.result[0] &&
-            specificUserEntry.result[0].image_location
-          }
-          date={
-            specificUserEntry.result &&
-            specificUserEntry.result[0] &&
-            specificUserEntry.result[0].entry_date
-          }
-          temperature={
-            specificUserEntry.result &&
-            specificUserEntry.result[0] &&
-            specificUserEntry.result[0].temperature
-          }
-        />
+        <View style={{backgroundColor: 'blue', height: 50}}>
+          <ImageCard
+            imageSource={
+              specificUserEntry.result &&
+              specificUserEntry.result[0] &&
+              specificUserEntry.result[0].image_uri
+            }
+            location={
+              specificUserEntry.result &&
+              specificUserEntry.result[0] &&
+              specificUserEntry.result[0].image_location
+            }
+            date={
+              specificUserEntry.result &&
+              specificUserEntry.result[0] &&
+              specificUserEntry.result[0].entry_date
+            }
+            temperature={
+              specificUserEntry.result &&
+              specificUserEntry.result[0] &&
+              specificUserEntry.result[0].temperature
+            }
+          />
+        </View>
         <TextInput
           placeholder={'Type your thoughts...'}
           placeholderTextColor={'black'}
+          style={{backgroundColor: 'red'}}
           onEndEditing={text => onChangeTextValue(text.nativeEvent.text)}
         />
       </View>

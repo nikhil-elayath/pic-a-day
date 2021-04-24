@@ -18,6 +18,7 @@ export default function Home(props) {
   }, []);
 
   const navigateToSpecificDay = item => {
+    // logic to check the date and navigate accordingly
     props.navigation.navigate &&
       props.navigation.navigate('SpecificDay', {item});
   };
