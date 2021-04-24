@@ -70,6 +70,7 @@ router.post("/create-entry", async (req, res, next) => {
     var imageLocation = req.body.imageLocation;
     var imageTemperature = req.body.imageTemperature;
     var entryCreationDate= new Date()
+
   } catch (error) {
     res.status(400).json({
       status: 400,
@@ -78,8 +79,19 @@ router.post("/create-entry", async (req, res, next) => {
   }
 
   try {
+    var date = new Date();
+
+    var mon = "" + (date.getMonth() + 1);
+    var dy = "" + date.getDate();
+    var yr = date.getFullYear();
+
+    if (mon.length < 2) mon = "0" + mon;
+    if (dy.length < 2) dy = "0" + dy;
+
+    let userEntryDate = [yr, mon, dy].join("-");
+    console.log("fimal", final_date)
     const result = await db.any(
-      `INSERT INTO user_entry(image_uri, image_description, entry_date, image_location, temperature) VALUES('${imageUri}', '${imageDescription}','${entryCreationDate}','${imageLocation}','${imageTemperature}')  RETURNING id`
+      `INSERT INTO user_entry(image_uri, image_description, entry_date, image_location, temperature) VALUES('${imageUri}', '${imageDescription}','${userEntryDate}','${imageLocation}','${imageTemperature}')  RETURNING id`
     );
     console.log("redult", result);
     res.status(200).json({
