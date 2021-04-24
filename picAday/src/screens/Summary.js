@@ -4,7 +4,7 @@ import Header from "../reuseableComponents/Header"
 import SummaryStyles from "../assests/styles/screens/Summary"
 
 
-export default function Summary() {
+export default function Summary(props) {
     console.log("props froom summary", props)
     return (
         <>

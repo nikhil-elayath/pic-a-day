@@ -4,8 +4,6 @@ import BottomTabBarStyles from '../assests/styles/reuseableComponents/BottomTabB
 import {bottomTabBar} from '../assests/Icons';
 
 export default function BottomTabBar(props) {
-  console.log('propdddds', props.navigation.navigate);
-
   const navigateToScreen = screenName => {
     props.navigation.navigate(screenName);
   };
@@ -22,13 +20,17 @@ export default function BottomTabBar(props) {
   ) : (
     <View style={BottomTabBarStyles.mainContainer}>
       <View style={BottomTabBarStyles.bottomMenu}>
-        <Image source={bottomTabBar.homeIcon} />
+        <TouchableOpacity onPress={() => navigateToScreen('Home')}>
+          <Image source={bottomTabBar.homeIcon} />
+        </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigateToScreen('CaptureImage')}
           style={BottomTabBarStyles.button}>
           <Image source={bottomTabBar.addEntryIcon} />
         </TouchableOpacity>
-        <Image source={bottomTabBar.summaryIcon} />
+        <TouchableOpacity onPress={() => navigateToScreen('Summary')}>
+          <Image source={bottomTabBar.summaryIcon} />
+        </TouchableOpacity>
       </View>
     </View>
   );
