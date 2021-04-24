@@ -1,22 +1,29 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text, Image, TextInput} from 'react-native';
-import {createUserEntry, updateUserEntryById} from '../actions/UserEntry';
+import {View, TextInput} from 'react-native';
+import {updateUserEntryById, getUserEntryById} from '../actions/UserEntry';
 import {useDispatch, useSelector} from 'react-redux';
 import ImageCard from '../components/ImageCard';
 
-
 export default function DayEditView(props) {
-  console.log("from day edit view")
   const dispatch = useDispatch();
   const store = useSelector(state => state.userEntry.userEntryId);
-  const [imageLocation, setImgLocation] = useState('');
+  const specificUserEntry = useSelector(
+    state => state.userEntry.specificUserEntry,
+  );
 
-  // use effect to fetch the data by a particular userentry id which is recieved in params from capture iamge image screen
-
+  // use effect to fetch the data by a particular userentry id which is recieved in params from capture iamge image screen4
+  useEffect(() => {
+    {
+      store.id != undefined && dispatch(getUserEntryById(store.id));
+    }
+  }, [store.id]);
 
   const onChangeTextValue = async text => {
     let data = {
-      imageUri: props.navigation.state.params.imageUri,
+      imageUri:
+        specificUserEntry.result &&
+        specificUserEntry.result[0] &&
+        specificUserEntry.result[0].image_uri,
       imageDescription: text,
       userEntryId: store.id && store.id,
     };
@@ -28,10 +35,26 @@ export default function DayEditView(props) {
     <>
       <View>
         <ImageCard
-          imageSource={item.image_uri}
-          location={item.image_location}
-          date={item.entry_date}
-          temperature={item.temperature}
+          imageSource={
+            specificUserEntry.result &&
+            specificUserEntry.result[0] &&
+            specificUserEntry.result[0].image_uri
+          }
+          location={
+            specificUserEntry.result &&
+            specificUserEntry.result[0] &&
+            specificUserEntry.result[0].image_location
+          }
+          date={
+            specificUserEntry.result &&
+            specificUserEntry.result[0] &&
+            specificUserEntry.result[0].entry_date
+          }
+          temperature={
+            specificUserEntry.result &&
+            specificUserEntry.result[0] &&
+            specificUserEntry.result[0].temperature
+          }
         />
         <TextInput
           placeholder={'Type your thoughts...'}

@@ -1,7 +1,8 @@
 import {
     GET_ALL_USER_ENTRY,
     CREATE_USER_ENTRY,
-    UPDATE_USER_ENTRY_BY_ID
+    UPDATE_USER_ENTRY_BY_ID,
+    GET_USER_ENTRY_BY_ID
   } from './Types';
 
   import axios from 'axios';
@@ -47,6 +48,24 @@ export const updateUserEntryById = data =>  dispatch => {
       .then(res => {
         dispatch({
           type: UPDATE_USER_ENTRY_BY_ID,
+          payload: res.data.data,
+        });
+      })
+      .catch(err => {
+          console.log("error from action", err)
+        // dispatch({type: ERROR, payload: err.response.data.message});
+      });
+  };
+
+  // get user entry by id
+export const getUserEntryById = data =>  dispatch => {
+  console.log("getUserEntryById actions", data)
+
+    return axios
+    .get(url + "/get-entry/"+ data)
+      .then(res => {
+        dispatch({
+          type: GET_USER_ENTRY_BY_ID,
           payload: res.data.data,
         });
       })

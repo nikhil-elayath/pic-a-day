@@ -30,6 +30,35 @@ router.get("/all-entry", async (req, res, next) => {
   }
 });
 
+// get user entry by id
+router.get("/get-entry/:id", async (req, res, next) => {
+  console.log("get entry by id", req.params);
+
+
+  try {
+    var userEntryId=req.params.id
+    const result = await db.any(`select * from user_entry where id = '${userEntryId}';`);
+    console.log("result", result)
+    if (result.length == 0) {
+      res.status(400).json({
+        status: 400,
+        message: "No Entry found",
+      });
+    } else {
+      res.status(200).json({
+        status: 200,
+        message: "Fecthed all entry successfully",
+        data: { result },
+      });
+    }
+  } catch (error) {
+    res.status(400).json({
+      status: 400,
+      message: "Error",
+    });
+  }
+});
+
 // create a new entry
 router.post("/create-entry", async (req, res, next) => {
   console.log("create entry api", req.body);

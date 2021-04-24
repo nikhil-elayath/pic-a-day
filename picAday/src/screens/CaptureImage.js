@@ -2,9 +2,6 @@ import React, {useEffect, useRef} from 'react';
 import {View, Text, Platform, TouchableOpacity, Alert} from 'react-native';
 import {RNCamera as Camera} from 'react-native-camera';
 import {createUserEntry, updateUserEntryById} from '../actions/UserEntry';
-import Geolocation from 'react-native-geolocation-service';
-
-
 import ImageCard from '../components/ImageCard';
 import BottomTabBar from '../reuseableComponents/BottomTabBar';
 import Geolocation from 'react-native-geolocation-service';
@@ -26,14 +23,14 @@ export default function CaptureImage(props) {
         const url = `https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?apiKey=VQCnCJVY_c9-7ezRY5xlhmh_QtFkt8hC-dlYMyc-4Bw&mode=retrieveAddresses&prox=${position.coords.latitude},${position.coords.longitude}`;
         await fetch(url)
           .then(res => console.log(res))
-          // .then(async resJson => {
-          //   imageLocation =
-          //     resJson.Response.View[0].Result[0].Location.Address.County +
-          //     ',' +
-          //     resJson.Response.View[0].Result[0].Location.Address
-          //       .AdditionalData[0].value;
-          //   console.log('image above', imageLocation);
-          // })
+          .then(async resJson => {
+            imageLocation =
+              resJson.Response.View[0].Result[0].Location.Address.County +
+              ',' +
+              resJson.Response.View[0].Result[0].Location.Address
+                .AdditionalData[0].value;
+            console.log('image above', imageLocation);
+          })
           .catch(e => {
             console.log('Error in getAddressFromCoordinates', e);
           });
@@ -58,6 +55,8 @@ export default function CaptureImage(props) {
         });
 
       // navigating to day edit view
+      props.navigation.navigate('DayEditView');
+
     } catch (err) {
       console.log(err);
     }
@@ -75,7 +74,6 @@ export default function CaptureImage(props) {
       const data = await cameraRef.current.takePictureAsync();
       await getImageLocationAndTemperature(data.uri);
       //  call to database
-      // props.navigation.navigate('DayEditView', {imageUri: data.uri});
     } catch (err) {
       Alert.alert('Error', 'Failed to take picture: ' + (err.message || err));
       return;
