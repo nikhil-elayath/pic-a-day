@@ -20,8 +20,9 @@ const BottomTabBar = StyleSheet.create({
     bottom: 0,
     backgroundColor: 'white',
     height: 50,
-    padding: 10,
-  },
+    paddingLeft:"20%",
+    paddingRight:"20%"
+    },
   bottomMenuForCameraOnScreen: {
     display: 'flex',
     flexDirection: 'row',
