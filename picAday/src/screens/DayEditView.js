@@ -50,52 +50,50 @@ export default function DayEditView(props) {
   };
 
   return (
-    
-      <KeyboardAvoidingView
-      style={{flex:0}}
-        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-        <View style={DayEditViewStyles.imageCardContainer}>
-          <ImageCard
-            imageSource={
-              specificUserEntry.result &&
-              specificUserEntry.result[0] &&
-              specificUserEntry.result[0].image_uri
-            }
-            location={
-              specificUserEntry.result &&
-              specificUserEntry.result[0] &&
-              specificUserEntry.result[0].image_location
-            }
-            date={
-              specificUserEntry.result &&
-              specificUserEntry.result[0] &&
-              specificUserEntry.result[0].entry_date
-            }
-            temperature={
-              specificUserEntry.result &&
-              specificUserEntry.result[0] &&
-              specificUserEntry.result[0].temperature
-            }
-            showCaptureButton={true}
-            captureImage={() => navigateToScreen('CaptureImage')}
-          />
-        </View>
-        <View style={DayEditViewStyles.textInputContainer}>
-          <TextInput
-            placeholder={'Type your thoughts...'}
-            placeholderTextColor={'black'}
-            value={
-              specificUserEntry.result &&
-              specificUserEntry.result[0] &&
-              specificUserEntry.result[0].image_description &&
-              specificUserEntry.result[0].image_description != 'undefined'
-                ? specificUserEntry.result[0].image_description
-                : showCurrentText == true && userEnteredText
-            }
-            onEndEditing={text => onChangeTextValue(text.nativeEvent.text)}
-          />
-        </View>
-      </KeyboardAvoidingView>
-    
+    <KeyboardAvoidingView
+      style={{flex: 0}}
+      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+      <View style={DayEditViewStyles.imageCardContainer}>
+        <ImageCard
+          imageSource={
+            specificUserEntry.result &&
+            specificUserEntry.result[0] &&
+            specificUserEntry.result[0].image_uri
+          }
+          location={
+            specificUserEntry.result &&
+            specificUserEntry.result[0] &&
+            specificUserEntry.result[0].image_location
+          }
+          date={
+            specificUserEntry.result &&
+            specificUserEntry.result[0] &&
+            specificUserEntry.result[0].entry_date
+          }
+          temperature={
+            specificUserEntry.result &&
+            specificUserEntry.result[0] &&
+            specificUserEntry.result[0].temperature
+          }
+          showCaptureButton={true}
+          captureImage={() => navigateToScreen('CaptureImage')}
+        />
+      </View>
+      <View style={DayEditViewStyles.textInputContainer}>
+        <TextInput
+          placeholder={'Type your thoughts...'}
+          placeholderTextColor={'black'}
+          value={
+            specificUserEntry.result &&
+            specificUserEntry.result[0] &&
+            specificUserEntry.result[0].image_description &&
+            specificUserEntry.result[0].image_description != 'undefined'
+              ? specificUserEntry.result[0].image_description
+              : showCurrentText == true && userEnteredText
+          }
+          onEndEditing={text => onChangeTextValue(text.nativeEvent.text)}
+        />
+      </View>
+    </KeyboardAvoidingView>
   );
 }

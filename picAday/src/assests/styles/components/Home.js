@@ -7,7 +7,8 @@ const HomeStyles = StyleSheet.create({
         height:"50%",
     },
     mainContainer:{
-        flex:1
+        flex:1,
+        height:10
     }
   
 

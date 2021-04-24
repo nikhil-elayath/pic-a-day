@@ -10,7 +10,7 @@ import {getAllUserEntry} from '../actions/UserEntry';
 export default function Home(props) {
   const dispatch = useDispatch();
   const store = useSelector(state => state.userEntry);
-  // console.log("stoe", store)
+  console.log("stoe", store.userEntry)
 
   useEffect(() => {
     //Navigating to Homescreen after 3 seconds post the screen has loaded

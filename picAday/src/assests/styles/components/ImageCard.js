@@ -4,6 +4,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 const ImageCardStyles = StyleSheet.create({
   mainContainer: {
     height: '100%',
+    backgroundColor:"blue"
   },
   image: {
     display: 'flex',
