@@ -20,11 +20,9 @@ export default function Home(props) {
     // logic to check the date and navigate accordingly
     // if date == current date navigate to day edit view as entry is editable
     // otherwise navigate to specific day and editing is not available
-    console.log('item', item);
 
     let currentDate = new Date();
-    console.log('current Dtae', currentDate.toISOString().split('T')[0]);
-    console.log(item.entry_date.split('T')[0]);
+
     if (
       currentDate.toISOString().split('T')[0] == item.entry_date.split('T')[0]
     ) {
@@ -32,11 +30,9 @@ export default function Home(props) {
     } else {
       props.navigation.navigate('SpecificDay', {item});
     }
- 
   };
   return (
     <View style={{flex: 1}}>
-      {/* <Header showBackButton={true}/> */}
       <View style={HomeStyles.imageContainer}>
         {store.userEntry &&
           store.userEntry.length != 0 &&
