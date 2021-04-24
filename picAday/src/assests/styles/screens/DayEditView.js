@@ -3,16 +3,14 @@ import {StyleSheet, Dimensions} from 'react-native';
 const DayEditViewStyles = StyleSheet.create({
   imageCardContainer: {
     backgroundColor: 'red',
-    height: '45%',
+    height: 245,
   },
-  textInputContainer:{
-marginTop:"10%",
-      backgroundColor:'blue'
+  textInputContainer: {
+    marginTop: '10%',
   },
-  bottomTabContainer:{
-      zIndex:1,
-      margin:"10%",
-      backgroundColor:"green"
-  }
+  bottomTabContainer: {
+    zIndex: 1,
+    margin: '10%',
+  },
 });
 export default DayEditViewStyles;
