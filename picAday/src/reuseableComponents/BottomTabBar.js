@@ -1,6 +1,7 @@
 import React from 'react';
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text, TouchableOpacity, Image} from 'react-native';
 import BottomTabBarStyles from '../assests/styles/reuseableComponents/BottomTabBar';
+import {bottomTabBar} from '../assests/Icons';
 
 export default function BottomTabBar(props) {
   console.log('propdddds', props.navigation.navigate);
@@ -8,21 +9,26 @@ export default function BottomTabBar(props) {
   const navigateToScreen = screenName => {
     props.navigation.navigate(screenName);
   };
-  return (
+  return props.cameraOn == true ? (
+    <View style={BottomTabBarStyles.mainContainerForCameraOnScreen}>
+      <View style={BottomTabBarStyles.bottomMenuForCameraOnScreen}>
+        <TouchableOpacity
+          onPress={props.captureImage}
+          style={BottomTabBarStyles.button}>
+          <Image source={bottomTabBar.captureImageIcon} />
+        </TouchableOpacity>
+      </View>
+    </View>
+  ) : (
     <View style={BottomTabBarStyles.mainContainer}>
       <View style={BottomTabBarStyles.bottomMenu}>
-        <Text>Home</Text>
-
-        {props.cameraOn === true ? (
-          <TouchableOpacity onPress={props.captureImage} style={BottomTabBarStyles.button}>
-            <Text> Capture Image</Text>
-          </TouchableOpacity>
-        ) : (
-          <TouchableOpacity onPress={() => navigateToScreen('CaptureImage')}>
-            <Text>Add entry</Text>
-          </TouchableOpacity>
-        )}
-        <Text>Summary</Text>
+        <Image source={bottomTabBar.homeIcon} />
+        <TouchableOpacity
+          onPress={() => navigateToScreen('CaptureImage')}
+          style={BottomTabBarStyles.button}>
+          <Image source={bottomTabBar.addEntryIcon} />
+        </TouchableOpacity>
+        <Image source={bottomTabBar.summaryIcon} />
       </View>
     </View>
   );
