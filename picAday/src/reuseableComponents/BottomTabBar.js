@@ -14,7 +14,7 @@ export default function BottomTabBar(props) {
         <Text>Home</Text>
 
         {props.cameraOn === true ? (
-          <TouchableOpacity onPress={props.captureImage}>
+          <TouchableOpacity onPress={props.captureImage} style={BottomTabBarStyles.button}>
             <Text> Capture Image</Text>
           </TouchableOpacity>
         ) : (
