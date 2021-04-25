@@ -37,7 +37,6 @@ export default function ImageCard(props) {
       <ImageBackground source={props.imageSource} style={ImageCardStyles.image}>
         <View style={ImageCardStyles.dateContainer}>
           <Text style={ImageCardStyles.dateText}>{props.date} </Text>
-          {/* <Text style={ImageCardStyles.dateText}>18 </Text> */}
         </View>
         <View style={ImageCardStyles.bottomMainContainer}>
           <View style={ImageCardStyles.locationContainer}>
