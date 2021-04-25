@@ -8,6 +8,7 @@ import SplashScreenStyles from '../assests/styles/screens/SplashScreen';
 import BrandText from '../reuseableComponents/BrandText';
 
 export default function SplashScreen(props) {
+  
   useEffect(() => {
     //Navigating to Homescreen after 3 seconds post the screen has loaded
     setTimeout(() => {
