@@ -28,7 +28,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import ImageCardStyles from '../assests/styles/components/ImageCard';
-import {bottomTabBar} from '../assests/Icons';
+import {bottomTabBar, imageCard} from '../assests/Icons';
 import BottomTabBarStyles from '../assests/styles/reuseableComponents/BottomTabBar';
 
 export default function ImageCard(props) {
@@ -40,7 +40,12 @@ export default function ImageCard(props) {
         </View>
         <View style={ImageCardStyles.bottomMainContainer}>
           <View style={ImageCardStyles.locationContainer}>
+            <View style={ImageCardStyles.locationIconContainer}>
+              <Image source={imageCard.locationIcon}/> 
+            </View>
+            <View style={ImageCardStyles.locationTextContainer}>
             <Text style={ImageCardStyles.locationText}>{props.location}</Text>
+            </View>
           </View>
           <View style={ImageCardStyles.temperatureContainer}>
             <Text style={ImageCardStyles.temperatureText}>

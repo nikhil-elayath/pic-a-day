@@ -39,6 +39,17 @@ const ImageCardStyles = StyleSheet.create({
   },
   buttonContainer:{
       alignItems:"center"
+  },
+
+  locationContainer:{
+    display:"flex",
+    flexDirection:"row",
+    justifyContent:"space-evenly",
+    alignItems:"center"
+
+  },
+  locationTextContainer:{
+    padding:10
   }
 });
 export default ImageCardStyles;
