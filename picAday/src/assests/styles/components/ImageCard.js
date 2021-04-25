@@ -4,7 +4,7 @@ import {StyleSheet, Dimensions} from 'react-native';
 const ImageCardStyles = StyleSheet.create({
   mainContainer: {
     height: '100%',
-    backgroundColor:"blue"
+    backgroundColor: 'blue',
   },
   image: {
     display: 'flex',
@@ -37,19 +37,28 @@ const ImageCardStyles = StyleSheet.create({
     borderRadius: 27,
     backgroundColor: 'white',
   },
-  buttonContainer:{
-      alignItems:"center"
+  buttonContainer: {
+    alignItems: 'center',
   },
 
-  locationContainer:{
-    display:"flex",
-    flexDirection:"row",
-    justifyContent:"space-evenly",
-    alignItems:"center"
-
+  locationContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
   },
-  locationTextContainer:{
-    padding:10
-  }
+  locationTextContainer: {
+    padding: 10,
+  },
+
+  temperatureContainer: {
+    display: 'flex',
+    flexDirection: 'row',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  temperatureTextContainer: {
+    padding: 10,
+  },
 });
 export default ImageCardStyles;

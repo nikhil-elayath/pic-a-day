@@ -47,11 +47,19 @@ export default function ImageCard(props) {
             <Text style={ImageCardStyles.locationText}>{props.location}</Text>
             </View>
           </View>
+
+          
           <View style={ImageCardStyles.temperatureContainer}>
+            <View style={ImageCardStyles.locationIconContainer}>
+              <Image source={imageCard.weatherIcon}/> 
+            </View>
+            <View style={ImageCardStyles.temperatureTextContainer}>
             <Text style={ImageCardStyles.temperatureText}>
               {props.temperature}
             </Text>
+            </View>
           </View>
+           
         </View>
       </ImageBackground>
       {props.showCaptureButton == true && (
