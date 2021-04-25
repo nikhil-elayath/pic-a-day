@@ -19,31 +19,30 @@ import BrandText from '../reuseableComponents/BrandText';
 
 export default function Header(props) {
   console.log('header');
-  return (
+  return props.showBackButton == true ? (
     <View style={HeaderStyles.mainContainer}>
-      {props.showBackButton == true && (
-        <View style={HeaderStyles.backArrowContainer}>
-          <TouchableOpacity
-            onPress={
-              props.backPress
-                ? props.backPress
-                : () => props.navigation.goBack()
-            }>
-            <Image
+      <View style={HeaderStyles.backArrowContainer}>
+        <TouchableOpacity
+          onPress={
+            props.backPress ? props.backPress : () => props.navigation.goBack()
+          }>
+          <Image
             style={HeaderStyles.backArrowImage}
-              testID={props.backPressImageTestID}
-              source={header.backIcon}
-            />
-          </TouchableOpacity>
-        </View>
-      )}
-      
+            testID={props.backPressImageTestID}
+            source={header.backIcon}
+          />
+        </TouchableOpacity>
+      </View>
       <View style={HeaderStyles.brandContainer}>
         <BrandText />
       </View>
-      <View style={{flex:1}}>
+      <View style={{flex: 1}}></View>
+    </View>
+  ) : (
+    <View style={HeaderStyles.mainContainerWithoutBackButton}>
+      <View style={HeaderStyles.brandContainer}>
+        <BrandText />
       </View>
-      
     </View>
   );
 }
