@@ -32,45 +32,47 @@ import {bottomTabBar, imageCard} from '../assests/Icons';
 import BottomTabBarStyles from '../assests/styles/reuseableComponents/BottomTabBar';
 
 export default function ImageCard(props) {
+  // console.log("props from imag card", props)
   return (
-    <View style={ImageCardStyles.mainContainer}>
-      <ImageBackground source={props.imageSource} style={ImageCardStyles.image}>
-        <View style={ImageCardStyles.dateContainer}>
-          <Text style={ImageCardStyles.dateText}>{props.date} </Text>
-        </View>
-        <View style={ImageCardStyles.bottomMainContainer}>
-          <View style={ImageCardStyles.locationContainer}>
-            <View style={ImageCardStyles.locationIconContainer}>
-              <Image source={imageCard.locationIcon}/> 
-            </View>
-            <View style={ImageCardStyles.locationTextContainer}>
-            <Text style={ImageCardStyles.locationText}>{props.location}</Text>
-            </View>
-          </View>
+    <Image source={"file:///data/user/0/com.picaday/cache/Camera/1405dfb9-b422-4000-8f96-078e3d07a5c9.jpg"}/>
+    // <View style={ImageCardStyles.mainContainer}>
+    //   <ImageBackground source={"file:///data/user/0/com.picaday/cache/Camera/1405dfb9-b422-4000-8f96-078e3d07a5c9.jpg"} style={ImageCardStyles.image}>
+    //     <View style={ImageCardStyles.dateContainer}>
+    //       <Text style={ImageCardStyles.dateText}>{props.date} </Text>
+    //     </View>
+    //     <View style={ImageCardStyles.bottomMainContainer}>
+    //       <View style={ImageCardStyles.locationContainer}>
+    //         <View style={ImageCardStyles.locationIconContainer}>
+    //           <Image source={imageCard.locationIcon}/> 
+    //         </View>
+    //         <View style={ImageCardStyles.locationTextContainer}>
+    //         <Text style={ImageCardStyles.locationText}>{props.location}</Text>
+    //         </View>
+    //       </View>
 
           
-          <View style={ImageCardStyles.temperatureContainer}>
-            <View style={ImageCardStyles.locationIconContainer}>
-              <Image source={imageCard.weatherIcon}/> 
-            </View>
-            <View style={ImageCardStyles.temperatureTextContainer}>
-            <Text style={ImageCardStyles.temperatureText}>
-              {props.temperature}
-            </Text>
-            </View>
-          </View>
+    //       <View style={ImageCardStyles.temperatureContainer}>
+    //         <View style={ImageCardStyles.locationIconContainer}>
+    //           <Image source={imageCard.weatherIcon}/> 
+    //         </View>
+    //         <View style={ImageCardStyles.temperatureTextContainer}>
+    //         <Text style={ImageCardStyles.temperatureText}>
+    //           {props.temperature}
+    //         </Text>
+    //         </View>
+    //       </View>
            
-        </View>
-      </ImageBackground>
-      {props.showCaptureButton == true && (
-        <View style={ImageCardStyles.buttonContainer}>
-          <TouchableOpacity
-            onPress={props.captureImage}
-            style={ImageCardStyles.button}>
-            <Image source={bottomTabBar.captureImageIcon} />
-          </TouchableOpacity>
-        </View>
-      )}
-    </View>
+    //     </View>
+    //   </ImageBackground>
+    //   {props.showCaptureButton == true && (
+    //     <View style={ImageCardStyles.buttonContainer}>
+    //       <TouchableOpacity
+    //         onPress={props.captureImage}
+    //         style={ImageCardStyles.button}>
+    //         <Image source={bottomTabBar.captureImageIcon} />
+    //       </TouchableOpacity>
+    //     </View>
+    //   )}
+    // </View>
   );
 }

@@ -9,10 +9,17 @@ import {
 import axios from 'axios';
 import config from '../config';
 const url = config.url + 'entry';
+console.log('url', url);
 
 export const getAllUserEntry = () => async dispatch => {
   return axios
-    .get(url + '/all-entry')
+    .get(url+'/all-entry', {
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded',
+        'Accept': 'application/json',
+        'Access-Control-Allow-Origin':"*"
+      },
+    })
     .then(res => {
       dispatch({
         type: GET_ALL_USER_ENTRY,
@@ -25,7 +32,6 @@ export const getAllUserEntry = () => async dispatch => {
     });
 };
 export const createUserEntry = newData => dispatch => {
-  console.log('create user entry actions', newData);
 
   return axios
     .post(url + '/create-entry', newData)
@@ -41,7 +47,6 @@ export const createUserEntry = newData => dispatch => {
     });
 };
 export const updateUserEntryById = data => dispatch => {
-  console.log('updateUserEntryById actions', data);
 
   return axios
     .put(url + '/update-entry', data)
@@ -59,7 +64,6 @@ export const updateUserEntryById = data => dispatch => {
 
 // get user entry by id
 export const getUserEntryById = data => dispatch => {
-  console.log('getUserEntryById actions', data);
 
   return axios
     .get(url + '/get-entry/' + data)
@@ -77,7 +81,6 @@ export const getUserEntryById = data => dispatch => {
 
 //fetching the summary data
 export const getSummaryData = () => dispatch => {
-  console.log('getSummaryData actions');
 
   return axios
     .get(url + '/get-summary')

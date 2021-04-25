@@ -12,7 +12,9 @@ export default function DayEditView(props) {
 
   const navigateToScreen = screenName => {
     console.log('button presses');
-    props.navigation.navigate(screenName, {imageData:specificUserEntry.result[0]});
+    props.navigation.navigate(screenName, {
+      imageData: specificUserEntry.result[0],
+    });
   };
   const dispatch = useDispatch();
   const store = useSelector(state => state.userEntry.userEntryId);
@@ -22,7 +24,6 @@ export default function DayEditView(props) {
 
   // use effect to fetch the data by a particular userentry id which is recieved in params from capture iamge image screen4
   useEffect(async () => {
-    console.log('from day edit view');
     {
       await dispatch(
         getUserEntryById(
@@ -34,7 +35,13 @@ export default function DayEditView(props) {
         ),
       );
     }
-  }, [store.id, props.entryId && props.entryId]);
+  }, []);
+  console.log(
+    'from day edit view',
+    specificUserEntry.result &&
+      specificUserEntry.result[0] &&
+      specificUserEntry.result[0].image_uri,
+  );
 
   const onChangeTextValue = async text => {
     await setShowCurrentText(true);
@@ -60,9 +67,7 @@ export default function DayEditView(props) {
       <View style={DayEditViewStyles.imageCardContainer}>
         <ImageCard
           imageSource={
-            specificUserEntry.result &&
-            specificUserEntry.result[0] &&
-            specificUserEntry.result[0].image_uri
+            'file:///data/user/0/com.picaday/cache/Camera/1405dfb9-b422-4000-8f96-078e3d07a5c9.jpg'
           }
           location={
             specificUserEntry.result &&

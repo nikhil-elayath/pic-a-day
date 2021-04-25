@@ -14,21 +14,18 @@ export default function CaptureImage(props) {
   const getImageLocationAndTemperature = async imageUri => {
     try {
       var imageLocation;
-      console.log('within try', props.navigation&&props.navigation.state&&props.navigation.state.params);
 
       // getting the location
       await Geolocation.getCurrentPosition(async position => {
-        console.log('within geolocation');
-        const url = `https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?apiKey=VQCnCJVY_c9-7ezRY5xlhmh_QtFkt8hC-dlYMyc-4Bw&mode=retrieveAddresses&prox=${position.coords.latitude},${position.coords.longitude}`;
+        const url = `https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?apiKey=3CG6vEWHqA2AhpkyTKn2kDhESI78TwNvV-uBrWzA6SY&mode=retrieveAddresses&prox=${position.coords.latitude},${position.coords.longitude}`;
         await fetch(url)
-          .then(res => console.log(res))
+          .then(resJson => resJson.json())
           .then(async resJson => {
             imageLocation =
               resJson.Response.View[0].Result[0].Location.Address.County +
               ',' +
               resJson.Response.View[0].Result[0].Location.Address
                 .AdditionalData[0].value;
-            console.log('image above', imageLocation);
           })
           .catch(e => {
             console.log('Error in getAddressFromCoordinates', e);
@@ -45,14 +42,18 @@ export default function CaptureImage(props) {
             imageUri: imageUri,
             imageLocation: imageLocation,
             imageTemperature: resJson.main.temp,
-            imageDescription:props.navigation.navigate.state&&props.navigation.navigate.state.params.imageData.image_description,
-            userEntryDate:props.navigation.navigate.state&&props.navigation.navigate.state.params.imageData.entry_date,
+            imageDescription:
+              props.navigation.navigate.state &&
+              props.navigation.navigate.state.params.imageData
+                .image_description,
+            userEntryDate:
+              props.navigation.navigate.state &&
+              props.navigation.navigate.state.params.imageData.entry_date,
             userEntryId:
               props.navigation.state &&
               props.navigation.state.params &&
               props.navigation.state.params.imageData.id,
           };
-          console.log("data fro update",data)
 
           // cehcking whether it is for updating the existing the image
           // if that is the case then this component is called from day edit view and user entry will be present in the params
@@ -72,8 +73,6 @@ export default function CaptureImage(props) {
     }
   };
   const takePicture = async () => {
-    console.log('from take picture');
-
     let options = {
       quality: 0.85,
       fixOrientation: true,
@@ -112,9 +111,6 @@ export default function CaptureImage(props) {
             message: 'We need your permission to use your audio',
             buttonPositive: 'Ok',
             buttonNegative: 'Cancel',
-          }}
-          onGoogleVisionBarcodesDetected={({barcodes}) => {
-            console.log(barcodes);
           }}
           onPress={takePicture}></Camera>
       </View>

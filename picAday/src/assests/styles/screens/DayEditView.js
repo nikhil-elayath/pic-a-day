@@ -2,7 +2,6 @@ import {StyleSheet, Dimensions} from 'react-native';
 
 const DayEditViewStyles = StyleSheet.create({
   imageCardContainer: {
-    backgroundColor: 'red',
     height: 245,
   },
   textInputContainer: {
