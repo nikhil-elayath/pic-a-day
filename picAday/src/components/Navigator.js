@@ -10,7 +10,7 @@ import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import BottomTabBar from '../reuseableComponents/BottomTabBar';
 import BrandText from '../reuseableComponents/BrandText';
-import Header from "../reuseableComponents/Header"
+import Header from '../reuseableComponents/Header';
 
 const navigator = createStackNavigator(
   {
@@ -18,16 +18,12 @@ const navigator = createStackNavigator(
       screen: SplashScreen,
       navigationOptions: {
         headerShown: false,
-        headerTitle:props => <BrandText {...props}/>,
-        header:<BrandText/>
       },
-  
     },
     Home: {
       screen: Home,
       navigationOptions: {
-        // headerTitle:props => <BrandText {...props}/>,
-        header:<Header showBackButton={true} />
+        header: <Header showBackButton={true} />,
       },
     },
     BottomTabBar: {
@@ -35,15 +31,27 @@ const navigator = createStackNavigator(
     },
     Summary: {
       screen: Summary,
+      navigationOptions: {
+        header: <Header showBackButton={false} />,
+      },
     },
     SpecificDay: {
       screen: SpecificDay,
+      navigationOptions: {
+        header: <Header showBackButton={true} />,
+      },
     },
     CaptureImage: {
       screen: CaptureImage,
+      navigationOptions: {
+        header: <Header showBackButton={true} />,
+      },
     },
     DayEditView: {
       screen: DayEditView,
+      navigationOptions: {
+        header: <Header showBackButton={true} />,
+      },
     },
   },
   {
