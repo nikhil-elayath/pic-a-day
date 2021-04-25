@@ -9,6 +9,8 @@ import CaptureImage from '../screens/CaptureImage';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import BottomTabBar from '../reuseableComponents/BottomTabBar';
+import BrandText from '../reuseableComponents/BrandText';
+import Header from "../reuseableComponents/Header"
 
 const navigator = createStackNavigator(
   {
@@ -16,10 +18,17 @@ const navigator = createStackNavigator(
       screen: SplashScreen,
       navigationOptions: {
         headerShown: false,
+        headerTitle:props => <BrandText {...props}/>,
+        header:<BrandText/>
       },
+  
     },
     Home: {
       screen: Home,
+      navigationOptions: {
+        // headerTitle:props => <BrandText {...props}/>,
+        header:<Header showBackButton={true} />
+      },
     },
     BottomTabBar: {
       screen: BottomTabBar,
