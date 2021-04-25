@@ -20,11 +20,11 @@ export default function Summary(props) {
     <>
       <View style={SummaryStyles.mainContainer}>
         <View style={SummaryStyles.streakContainer}>
-          <View>
-            <Text>Days </Text>
+          <View style={SummaryStyles.headingTextContainer}>
+            <Text style={SummaryStyles.headingText}>Days </Text>
           </View>
           <View>
-            <Text>
+            <Text style={SummaryStyles.descriptionText}>
               {store.totalEntriesMadeByUser}/{store.numberOfDaysSinceFirstEntry}{' '}
             </Text>
           </View>
@@ -37,9 +37,9 @@ export default function Summary(props) {
         </View>
 
         <View style={SummaryStyles.hottestDayContainer}>
-          <View>
-            <Text>Hottest Day </Text>
-            <Text>
+          <View style={SummaryStyles.headingTextContainer}>
+            <Text style={SummaryStyles.headingText}>Hottest Day </Text>
+            <Text style={SummaryStyles.descriptionText}>
               {store.highestTemperatureData &&
                 store.highestTemperatureData.highestTemperature}
               &deg;
@@ -51,9 +51,9 @@ export default function Summary(props) {
           </View>
         </View>
         <View style={SummaryStyles.coldestDayContainer}>
-          <View>
-            <Text>ColDest Day </Text>
-            <Text>
+          <View style={SummaryStyles.headingTextContainer}>
+            <Text style={SummaryStyles.headingText}>Coldest day </Text>
+            <Text style={SummaryStyles.descriptionText}>
               {store.lowestTemperatureData &&
                 store.lowestTemperatureData.lowestTemperature}
               &deg;
