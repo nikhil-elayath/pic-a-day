@@ -80,7 +80,7 @@ router.post("/create-entry", async (req, res, next) => {
     var date = new Date();
 
     var mon = "" + (date.getMonth() + 1);
-    var dy = "" + (date.getDate()+1);
+    var dy = "" + (date.getDate() + 1);
     var yr = date.getFullYear();
 
     if (mon.length < 2) mon = "0" + mon;
@@ -141,6 +141,53 @@ router.put("/update-entry", async (req, res, next) => {
     });
   } catch (error) {
     console.log(error);
+    res.status(400).json({
+      status: 400,
+      message: "Error",
+    });
+  }
+});
+
+// getting the summary details
+router.get("/get-summary", async (req, res, next) => {
+  console.log("get-summaryy api");
+
+  try {
+    const result = await db.any(`select * from user_entry `);
+    const temperatureData = await db.any(
+      `select * from user_entry ORDER BY temperature DESC`
+    );
+    var totalEntriesMadeByUser = result.length;
+    var dateOfFirstUserEntry;
+    var currentDate = new Date();
+    var numberOfDaysSinceFirstEntry;
+    var highestTemperature;
+    var lowestTemperature;
+    // making sure there are entries present inside the result
+    if (result.length != 0) {
+      // getting the first entry made by the user and using the date
+      dateOfFirstUserEntry = result[0].entry_date;
+      // getting the streak count
+      const diffTime = Math.abs(dateOfFirstUserEntry - currentDate);
+      numberOfDaysSinceFirstEntry = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+      // fetched the temperature data in descending order
+      // so first entry has highest temp and last entry has least temp
+      highestTemperature = temperatureData[0].temperature;
+      lowestTemperature =
+        temperatureData[temperatureData.length - 1].temperature;
+    }
+
+    res.status(200).json({
+      status: 200,
+      message: "Fecthed all entry successfully",
+      data: {
+        totalEntriesMadeByUser,
+        numberOfDaysSinceFirstEntry,
+        highestTemperature,
+        lowestTemperature,
+      },
+    });
+  } catch (error) {
     res.status(400).json({
       status: 400,
       message: "Error",
