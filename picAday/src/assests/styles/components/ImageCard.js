@@ -1,5 +1,4 @@
 import {StyleSheet, Dimensions} from 'react-native';
-// import {widthPercentageToDP as wp} from 'react-native-responsive-screen';
 
 const ImageCardStyles = StyleSheet.create({
   mainContainer: {
@@ -15,12 +14,17 @@ const ImageCardStyles = StyleSheet.create({
   },
   dateText: {
     color: 'white',
+    fontSize:18
+
   },
   locationText: {
     color: 'white',
+    fontSize:18
   },
   temperatureText: {
     color: 'white',
+    fontSize:18
+
   },
   bottomMainContainer: {
     padding: 10,
