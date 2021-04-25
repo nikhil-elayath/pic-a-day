@@ -3,11 +3,9 @@ import {StyleSheet, Dimensions} from 'react-native';
 const SummaryStyles = StyleSheet.create({
   mainContainer: {
     alignItems: 'center',
-    // backgroundColor:"red",
   },
   streakContainer: {
     width: '100%',
-
     alignItems: 'center',
     backgroundColor: '#F8F9F9',
     borderBottomWidth: 1,
@@ -15,7 +13,6 @@ const SummaryStyles = StyleSheet.create({
   },
   hottestDayContainer: {
     width: '100%',
-
     alignItems: 'center',
     backgroundColor: '#F8F9F9',
     borderBottomWidth: 1,

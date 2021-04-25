@@ -210,7 +210,6 @@ router.get("/get-summary", async (req, res, next) => {
       var yearOfTheEntry = temperatureData[
         temperatureData.length - 1
       ].entry_date.getFullYear();
-      // highestTemperature = temperatureData[0].temperature;
       lowestTemperatureData = {
         lowestTemperature:
           temperatureData[temperatureData.length - 1].temperature,

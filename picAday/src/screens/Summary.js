@@ -41,24 +41,26 @@ export default function Summary(props) {
             <Text>Hottest Day </Text>
             <Text>
               {store.highestTemperatureData &&
-                store.highestTemperatureData.highestTemperature}{' '}
+                store.highestTemperatureData.highestTemperature}
+              &deg;
             </Text>
             <Text>
               {store.highestTemperatureData &&
-                store.highestTemperatureData.highestTemperatureDate}{' '}
+                store.highestTemperatureData.highestTemperatureDate}
             </Text>
           </View>
         </View>
         <View style={SummaryStyles.coldestDayContainer}>
           <View>
-            <Text>Codlewst day Day </Text>
+            <Text>ColDest Day </Text>
             <Text>
               {store.lowestTemperatureData &&
-                store.lowestTemperatureData.lowestTemperature}{' '}
+                store.lowestTemperatureData.lowestTemperature}
+              &deg;
             </Text>
             <Text>
               {store.lowestTemperatureData &&
-                store.lowestTemperatureData.lowestTemperatureDate}{' '}
+                store.lowestTemperatureData.lowestTemperatureDate}
             </Text>
           </View>
         </View>
