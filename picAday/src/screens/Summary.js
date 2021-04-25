@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
 import {getSummaryData} from '../actions/UserEntry';
-
+import BottomTabBar from '../reuseableComponents/BottomTabBar';
 import SummaryStyles from '../assests/styles/screens/Summary';
 
 export default function Summary(props) {
@@ -64,7 +64,10 @@ export default function Summary(props) {
             </Text>
           </View>
         </View>
+        <BottomTabBar navigation={props.navigation} />
+
       </View>
+      
     </>
   );
 }
