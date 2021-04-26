@@ -2,9 +2,6 @@
 // HOW TO USE THIS COMPONENT
 // =========================
 /*imageSource-->image you want to render
-date--> text
-location --> text
-temperature --> text
 
 */
 
@@ -12,12 +9,18 @@ temperature --> text
   /*   <ImageCrad
           {...props}
           imageSource={image}
-          date={"July 18"}
-          location={"Kocahi, India"}
+          month={"July"}
+          date={"18"}
+          location={"Kochi, India"}
           temperature={"14C"}
+          weatherIcon={image}
+          locationIcon={image}
+          showCaptureButton={boolean} --> to show the cature image icon below the image
        /> 
   */
 }
+
+// The reuseable card compoentn which is used to render the images
 
 import React from 'react';
 import {
@@ -63,6 +66,8 @@ export default function ImageCard(props) {
           </View>
         </View>
       </ImageBackground>
+      {/* showing the capture icon which will be displayed only on day edit view
+      i.e for images that are taken on the current day */}
       {props.showCaptureButton == true && (
         <View style={ImageCardStyles.buttonContainer}>
           <TouchableOpacity
