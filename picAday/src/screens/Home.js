@@ -56,7 +56,6 @@ export default function Home(props) {
           {store.userEntry &&
             store.userEntry.length != 0 &&
             store.userEntry.result.map((item, index) => {
-              console.log('item home', typeof item.entry_date);
               return (
                 <TouchableOpacity
                   key={index}
