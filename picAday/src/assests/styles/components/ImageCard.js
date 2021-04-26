@@ -3,7 +3,6 @@ import {StyleSheet, Dimensions} from 'react-native';
 const ImageCardStyles = StyleSheet.create({
   mainContainer: {
     height: '100%',
-    // backgroundColor: 'blue',
   },
   image: {
     display: 'flex',
@@ -12,19 +11,26 @@ const ImageCardStyles = StyleSheet.create({
     height: '100%',
     width: '100%',
   },
+  dateContainer:{
+    padding:10
+  },
   dateText: {
     color: 'white',
-    fontSize:18
-
+    fontSize: 25,
+    fontWeight:"bold"
+  },
+  monthText: {
+    color: 'white',
+    fontSize: 18,
+    fontWeight:"bold"
   },
   locationText: {
     color: 'white',
-    fontSize:18
+    fontSize: 18,
   },
   temperatureText: {
     color: 'white',
-    fontSize:18
-
+    fontSize: 18,
   },
   bottomMainContainer: {
     padding: 10,
