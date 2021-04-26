@@ -32,14 +32,12 @@ router.get("/all-entry", async (req, res, next) => {
 
 // get user entry by id
 router.get("/get-entry/:id", async (req, res, next) => {
-  console.log("get entry by id", req.params);
 
   try {
     var userEntryId = req.params.id;
     const result = await db.any(
       `select * from user_entry where id = '${userEntryId}';`
     );
-    console.log("result", result);
     if (result.length == 0) {
       res.status(400).json({
         status: 400,
@@ -62,8 +60,6 @@ router.get("/get-entry/:id", async (req, res, next) => {
 
 // create a new entry
 router.post("/create-entry", async (req, res, next) => {
-  console.log("create entry api", req.body);
-
   try {
     var imageUri = req.body.imageUri;
     var imageDescription = req.body.imageDescription;
@@ -78,20 +74,10 @@ router.post("/create-entry", async (req, res, next) => {
 
   try {
     var dateValue = new Date().toISOString();
-    console.log("date", dateValue);
-
-    // var mon = "" + (date.getMonth() );
-    // var dy = "" + (date.getDate() );
-    // var yr = date.getFullYear();
-
-    // if (mon.length < 2) mon = "0" + mon;
-    // if (dy.length < 2) dy = "0" + dy;
-
-    // let userEntryDate = [yr, mon, dy].join("-");
+  
     const result = await db.any(
       `INSERT INTO user_entry(image_uri, image_description, entry_date, image_location, temperature) VALUES('${imageUri}', '${imageDescription}','${dateValue}','${imageLocation}','${imageTemperature}')  RETURNING id`
     );
-    console.log("redult", result);
     res.status(200).json({
       status: 200,
       message: "Created entry successfully",
@@ -107,7 +93,6 @@ router.post("/create-entry", async (req, res, next) => {
 });
 
 router.put("/update-entry", async (req, res, next) => {
-  console.log("update entry api", req.body);
 
   try {
     var imageUri = req.body.imageUri;
@@ -121,24 +106,15 @@ router.put("/update-entry", async (req, res, next) => {
   }
 
   try {
-    var date = new Date();
-
-    var mon = "" + (date.getMonth() + 1);
-    var dy = "" + date.getDate();
-    var yr = date.getFullYear();
-
-    if (mon.length < 2) mon = "0" + mon;
-    if (dy.length < 2) dy = "0" + dy;
-
-    let userEntryDate = [yr, mon, dy].join("-");
+    var dateValue = new Date().toISOString();
+  
     const result = await db.any(
-      `update user_entry set image_uri='${imageUri}', image_description='${imageDescription}', entry_date='${userEntryDate}' where id = '${userEntryId}';`
+      `update user_entry set image_uri='${imageUri}', image_description='${imageDescription}', entry_date='${dateValue}' where id = '${userEntryId}';`
     );
 
     res.status(200).json({
       status: 200,
       message: "Created entry successfully",
-      // data:result[0]
     });
   } catch (error) {
     console.log(error);
@@ -151,7 +127,6 @@ router.put("/update-entry", async (req, res, next) => {
 
 // getting the summary details
 router.get("/get-summary", async (req, res, next) => {
-  console.log("get-summaryy api");
   var days = [
     "Sunday",
     "Monday",
