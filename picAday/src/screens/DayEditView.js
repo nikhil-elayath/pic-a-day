@@ -22,18 +22,12 @@ export default function DayEditView(props) {
 
   // use effect to fetch the data by a particular userentry id which is recieved in params from capture iamge image screen4
   useEffect(async () => {
-    console.log(
-      'day ',
-      props.navigation.navigate &&
-        props.navigation.state 
-        // props.navigation.state.params.userEntryId &&
-        // props.navigation.state.params.userEntryId,
-    );
+
 
     props.navigation &&
     props.navigation.state &&
-    props.navigation.state.params.userEntryId
-      ? await dispatch(
+    props.navigation.state.params&&props.navigation.state.params.userEntryId?
+       await dispatch(
           getUserEntryById(props.navigation.state.params.userEntryId),
         )
       : store.id &&
