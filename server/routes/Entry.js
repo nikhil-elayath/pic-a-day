@@ -9,7 +9,7 @@ router.get("/all-entry", async (req, res, next) => {
 
   try {
     const result = await db.any(`select * from user_entry`);
-    console.log("result", result)
+    console.log("result", result);
     if (result.length == 0) {
       res.status(400).json({
         status: 400,
@@ -78,7 +78,7 @@ router.post("/create-entry", async (req, res, next) => {
 
   try {
     var dateValue = new Date().toISOString();
-    console.log("date", dateValue)
+    console.log("date", dateValue);
 
     // var mon = "" + (date.getMonth() );
     // var dy = "" + (date.getDate() );
@@ -190,27 +190,19 @@ router.get("/get-summary", async (req, res, next) => {
     // making sure there are entries present inside the result
     if (result.length != 0) {
       // getting the first entry made by the user and using the date
-      dateOfFirstUserEntry = result[0].entry_date;
+      dateOfFirstUserEntry = new Date(result[0].entry_date);
       // getting the streak count
       const diffTime = Math.abs(dateOfFirstUserEntry - currentDate);
       numberOfDaysSinceFirstEntry = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       // fetched the temperature data in descending order
       // so first entry has highest temp and last entry has least temp
-      console.log(
-        days[temperatureData[temperatureData.length - 1].entry_date.getDay()]
+      var dateOfLastEntry = new Date(
+        temperatureData[temperatureData.length - 1].entry_date
       );
-      var weekDay =
-        days[temperatureData[temperatureData.length - 1].entry_date.getDay()];
-      var nameOfTheMonth =
-        months[
-          temperatureData[temperatureData.length - 1].entry_date.getMonth()
-        ];
-      var dateOfTheEntry = temperatureData[
-        temperatureData.length - 1
-      ].entry_date.getDate();
-      var yearOfTheEntry = temperatureData[
-        temperatureData.length - 1
-      ].entry_date.getFullYear();
+      var weekDay = days[dateOfLastEntry.getDay()];
+      var nameOfTheMonth = months[dateOfLastEntry.getMonth()];
+      var dateOfTheEntry = dateOfLastEntry.getDate();
+      var yearOfTheEntry = dateOfLastEntry.getFullYear();
       lowestTemperatureData = {
         lowestTemperature:
           temperatureData[temperatureData.length - 1].temperature,
@@ -223,10 +215,12 @@ router.get("/get-summary", async (req, res, next) => {
           "," +
           yearOfTheEntry,
       };
-      var weekDay = days[temperatureData[0].entry_date.getDay()];
-      var nameOfTheMonth = months[temperatureData[0].entry_date.getMonth()];
-      var dateOfTheEntry = temperatureData[0].entry_date.getDate();
-      var yearOfTheEntry = temperatureData[0].entry_date.getFullYear();
+      var dateOfFirstEntry = new Date(temperatureData[0].entry_date);
+
+      var weekDay = days[dateOfFirstEntry.getDay()];
+      var nameOfTheMonth = months[dateOfFirstEntry.getMonth()];
+      var dateOfTheEntry = dateOfFirstEntry.getDate();
+      var yearOfTheEntry = dateOfFirstEntry.getFullYear();
       highestTemperatureData = {
         highestTemperature: temperatureData[0].temperature,
         highestTemperatureDate:
@@ -239,7 +233,6 @@ router.get("/get-summary", async (req, res, next) => {
           yearOfTheEntry,
       };
     }
-    console.log("lowestTemperatureData", lowestTemperatureData);
 
     res.status(200).json({
       status: 200,
