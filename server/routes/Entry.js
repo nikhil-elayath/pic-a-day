@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const pg = require("pg-promise")();
 const db = require("../db-init/dbConn");
 
 // api to get all the user entry
@@ -164,9 +163,7 @@ router.get("/get-summary", async (req, res, next) => {
       numberOfDaysSinceFirstEntry = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       // fetched the temperature data in descending order
       // so first entry has highest temp and last entry has least temp
-      console.log(
-        days[temperatureData[temperatureData.length - 1].entry_date.getDay()]
-      );
+   
       var weekDay =
         days[temperatureData[temperatureData.length - 1].entry_date.getDay()];
       var nameOfTheMonth =
