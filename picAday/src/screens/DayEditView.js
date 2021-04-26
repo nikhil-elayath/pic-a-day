@@ -93,15 +93,16 @@ export default function DayEditView(props) {
           placeholder={'Type your thoughts...'}
           placeholderTextColor={'black'}
           value={
+            showCurrentText == true
+              ? userEnteredText:
             specificUserEntry.result &&
             specificUserEntry.result[0] &&
             specificUserEntry.result[0].image_description &&
             specificUserEntry.result[0].image_description != 'undefined'
-              ? specificUserEntry.result[0].image_description
-              : showCurrentText == true
-              ? userEnteredText
-              : null
+              && specificUserEntry.result[0].image_description
+              
           }
+          onChangeText={text=>onChangeTextValue(text)}
           onEndEditing={text => onChangeTextValue(text.nativeEvent.text)}
         />
       </View>
