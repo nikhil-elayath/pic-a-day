@@ -6,14 +6,11 @@ import BottomTabBar from '../reuseableComponents/BottomTabBar';
 import SummaryStyles from '../assests/styles/screens/Summary';
 
 export default function Summary(props) {
-  console.log('props froom summary', props);
   const dispatch = useDispatch();
   const store = useSelector(
     state => state.userEntry.summaryData && state.userEntry.summaryData,
   );
-  console.log('store from summary', store);
   useEffect(() => {
-    //Navigating to Homescreen after 3 seconds post the screen has loaded
     dispatch(getSummaryData());
   }, []);
   return (

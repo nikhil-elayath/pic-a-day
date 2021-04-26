@@ -16,7 +16,6 @@ export default  formatDate = (userEntryDate, requiredFormat) => {
     var userEntryDateObject = new Date(userEntryDate); //converts the string into date object
     var monthInString = userEntryDateObject.getMonth(); //get the value of month
     var dateInString = userEntryDateObject.getDate() - 1; //get the value of date
-    console.log(monthNames[monthInString]);
     if (requiredFormat == 'month') {
       return monthNames[monthInString];
     } else {

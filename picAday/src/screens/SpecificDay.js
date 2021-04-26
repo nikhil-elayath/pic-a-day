@@ -6,7 +6,6 @@ import {useDispatch, useSelector} from 'react-redux';
 import formatDate from '../middlewares/FormatDate';
 
 export default function SpecificDay(props) {
-  console.log('from specifc', props.navigation.state.params.item);
   const dispatch = useDispatch();
   const store = useSelector(state => state.userEntry);
   return (

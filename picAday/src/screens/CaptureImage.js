@@ -81,7 +81,6 @@ export default function CaptureImage(props) {
 
     try {
       const data = await cameraRef.current.takePictureAsync();
-      console.log("data from iamge capture", data)
       await getImageLocationAndTemperature(data.uri);
       await props.navigation.navigate('DayEditView');
 

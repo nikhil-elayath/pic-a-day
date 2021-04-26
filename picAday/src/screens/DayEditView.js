@@ -34,12 +34,7 @@ export default function DayEditView(props) {
       );
     }
   }, []);
-  console.log(
-    'from day edit view',
-    specificUserEntry.result &&
-      specificUserEntry.result[0] &&
-      specificUserEntry.result[0].image_uri,
-  );
+
 
   const onChangeTextValue = async text => {
     await setShowCurrentText(true);
@@ -53,7 +48,6 @@ export default function DayEditView(props) {
       imageDescription: text,
       userEntryId: store.id && store.id,
     };
-    console.log('text', text);
     // Updating the previous entry which was created and using that id
     await dispatch(updateUserEntryById(data));
   };
