@@ -67,7 +67,9 @@ export default function DayEditView(props) {
       <View style={DayEditViewStyles.imageCardContainer}>
         <ImageCard
           imageSource={
-            'file:///data/user/0/com.picaday/cache/Camera/1405dfb9-b422-4000-8f96-078e3d07a5c9.jpg'
+            specificUserEntry.result &&
+            specificUserEntry.result[0] &&
+            specificUserEntry.result[0].image_uri
           }
           location={
             specificUserEntry.result &&

@@ -23,7 +23,7 @@ const navigator = createStackNavigator(
     Home: {
       screen: Home,
       navigationOptions: {
-        header: <Header showBackButton={true} />,
+        header: (props)=><Header showBackButton={true} {...props} />,
       },
     },
     BottomTabBar: {
@@ -32,25 +32,25 @@ const navigator = createStackNavigator(
     Summary: {
       screen: Summary,
       navigationOptions: {
-        header: <Header showBackButton={false} />,
+        header: (props)=><Header showBackButton={false} {...props} />,
       },
     },
     SpecificDay: {
       screen: SpecificDay,
       navigationOptions: {
-        header: <Header showBackButton={true} />,
+        header: (props)=><Header showBackButton={true} {...props} />,
       },
     },
     CaptureImage: {
       screen: CaptureImage,
       navigationOptions: {
-        header: <Header showBackButton={true} />,
+        header: (props)=><Header showBackButton={true} {...props} />,
       },
     },
     DayEditView: {
       screen: DayEditView,
       navigationOptions: {
-        header: <Header showBackButton={true} />,
+        header: (props)=><Header showBackButton={true} {...props} />,
       },
     },
   },

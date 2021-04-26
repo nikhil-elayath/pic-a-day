@@ -18,7 +18,6 @@ import HeaderStyles from '../assests/styles/reuseableComponents/Header';
 import BrandText from '../reuseableComponents/BrandText';
 
 export default function Header(props) {
-  console.log('header');
   return props.showBackButton == true ? (
     <View style={HeaderStyles.mainContainer}>
       <View style={HeaderStyles.backArrowContainer}>
