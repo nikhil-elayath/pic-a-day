@@ -1,3 +1,6 @@
+// Importing all the icons
+// and exporting them as section wise component
+
 import homeIcon from '../assests/icons/homeIconFilled.png';
 import homeIconLine from '../assests/icons/homeIconLine.png';
 import summaryIcon from '../assests/icons/summaryIconFilled.png';
@@ -14,7 +17,7 @@ export const bottomTabBar = {
   addEntryIcon,
   captureImageIcon,
   homeIconLine,
-  summaryIconLine
+  summaryIconLine,
 };
 export const header = {
   backIcon,
