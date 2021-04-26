@@ -23,7 +23,7 @@ const navigator = createStackNavigator(
     Home: {
       screen: Home,
       navigationOptions: {
-        header: (props)=><Header showBackButton={true} {...props} />,
+        header: (props)=><Header showBackButton={false} {...props} />,
       },
     },
     BottomTabBar: {
