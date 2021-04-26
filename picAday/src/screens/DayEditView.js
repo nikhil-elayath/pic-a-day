@@ -1,3 +1,8 @@
+// The screen will be visible after successfull capturing of the image
+// If the image is taken on the current date then user will be navigated to this screen
+// User can can edit the image and text
+
+
 import React, {useEffect, useState} from 'react';
 import {View, TextInput, KeyboardAvoidingView} from 'react-native';
 import {updateUserEntryById, getUserEntryById} from '../actions/UserEntry';
@@ -9,6 +14,8 @@ export default function DayEditView(props) {
   const [showCurrentText, setShowCurrentText] = React.useState(false);
   const [userEnteredText, setUserEnteredText] = React.useState('');
 
+  // function to navigate to a screen
+  // takes screen name as a parameter
   const navigateToScreen = screenName => {
     props.navigation.navigate(screenName, {
       imageData: specificUserEntry.result[0],
@@ -22,8 +29,6 @@ export default function DayEditView(props) {
 
   // use effect to fetch the data by a particular userentry id which is recieved in params from capture iamge image screen4
   useEffect(async () => {
-
-
     props.navigation &&
     props.navigation.state &&
     props.navigation.state.params&&props.navigation.state.params.userEntryId?
@@ -35,6 +40,7 @@ export default function DayEditView(props) {
         (await dispatch(getUserEntryById(store.id)));
   }, []);
 
+  // handling the onchange text which takes the user entered text as a paramertersd
   const onChangeTextValue = async text => {
     await setShowCurrentText(true);
     await setUserEnteredText(text);
@@ -92,6 +98,9 @@ export default function DayEditView(props) {
         <TextInput
           placeholder={'Type your thoughts...'}
           placeholderTextColor={'black'}
+          // if there is value present in the db will show that
+          // and if user satrts editing showCurrentText in onChnageText function will be set to true
+          // and user entered text will be displayed in the input box
           value={
             showCurrentText == true
               ? userEnteredText:

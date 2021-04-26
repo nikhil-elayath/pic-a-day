@@ -1,4 +1,4 @@
-// Splashscreen [Nikhil]
+// Splashscreen
 // The first screen that would load up when the app is opened.
 // Will have a  set time out for 2 seconds and after that will be navigated to the homescreen
 

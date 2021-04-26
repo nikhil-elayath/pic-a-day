@@ -11,6 +11,7 @@ import {createStackNavigator} from 'react-navigation-stack';
 import BottomTabBar from '../reuseableComponents/BottomTabBar';
 import BrandText from '../reuseableComponents/BrandText';
 import Header from '../reuseableComponents/Header';
+import ErrorScreen from "../reuseableComponents/ErrorScreen"
 
 const navigator = createStackNavigator(
   {
@@ -24,6 +25,12 @@ const navigator = createStackNavigator(
       screen: Home,
       navigationOptions: {
         header: (props)=><Header showBackButton={false} {...props} />,
+      },
+    },
+    ErrorScreen: {
+      screen: ErrorScreen,
+      navigationOptions: {
+        headerShown: false,
       },
     },
     BottomTabBar: {

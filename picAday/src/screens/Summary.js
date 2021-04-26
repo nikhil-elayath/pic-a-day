@@ -1,3 +1,5 @@
+// The summary screen which contains summary data
+
 import React, {useEffect} from 'react';
 import {View, Text} from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -16,6 +18,7 @@ export default function Summary(props) {
   return (
     <>
       <View style={SummaryStyles.mainContainer}>
+        {/* Making sure user has made atleast one entry and displaying the summary data accordingly */}
         {store.totalEntriesMadeByUser != 0 ? (
           <>
             <View style={SummaryStyles.streakContainer}>

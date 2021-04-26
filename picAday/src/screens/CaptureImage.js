@@ -6,17 +6,21 @@ import ImageCard from '../components/ImageCard';
 import BottomTabBar from '../reuseableComponents/BottomTabBar';
 import Geolocation from 'react-native-geolocation-service';
 import {useDispatch, useSelector} from 'react-redux';
+import ErrorScreen from '../reuseableComponents/ErrorScreen';
 
 export default function CaptureImage(props) {
   const cameraRef = useRef();
   const dispatch = useDispatch();
 
+  // gets the location and the temperature
+  // accepts imageUri as a parameter
   const getImageLocationAndTemperature = async imageUri => {
     try {
       var imageLocation;
 
       // getting the location
       await Geolocation.getCurrentPosition(async position => {
+        // Using open source here api for getting the coordinates
         const url = `https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?apiKey=C2i31ZIVgkgcqcOwb8qV2Xh2FDDpc4DWUnL-0TWOnL4&mode=retrieveAddresses&prox=${position.coords.latitude},${position.coords.longitude}`;
         await fetch(url)
           .then(resJson => resJson.json())
@@ -27,8 +31,9 @@ export default function CaptureImage(props) {
               resJson.Response.View[0].Result[0].Location.Address
                 .AdditionalData[0].value;
           })
-          .catch(e => {
-            console.log('Error in getAddressFromCoordinates', e);
+          .catch(async e => {
+            console.log("errror",e)
+             await props.navigation.navigate('ErrorScreen');
           });
       });
 
@@ -66,10 +71,10 @@ export default function CaptureImage(props) {
             : await dispatch(createUserEntry(data));
         })
         .catch(e => {
-          console.log('Error in ', e);
+          props.navigation.navigate('ErrorScreen');
         });
     } catch (err) {
-      console.log(err);
+       props.navigation.navigate('ErrorScreen');
     }
   };
   const takePicture = async () => {
@@ -83,8 +88,6 @@ export default function CaptureImage(props) {
       const data = await cameraRef.current.takePictureAsync();
       await getImageLocationAndTemperature(data.uri);
       await props.navigation.navigate('DayEditView');
-
-      //  call to database
     } catch (err) {
       Alert.alert('Error', 'Failed to take picture: ' + (err.message || err));
       return;
