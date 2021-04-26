@@ -10,7 +10,6 @@ export default function Summary(props) {
   const store = useSelector(
     state => state.userEntry.summaryData && state.userEntry.summaryData,
   );
-  console.log('store', store);
   useEffect(() => {
     dispatch(getSummaryData());
   }, []);
@@ -66,18 +65,18 @@ export default function Summary(props) {
               </View>
             </View>
             <BottomTabBar
-            navigation={props.navigation}
-            selectedIcon={'summary'}
-          />
+              navigation={props.navigation}
+              selectedIcon={'summary'}
+            />
           </>
         ) : (
           <>
-          <Text> No data present</Text>
-         
-          <BottomTabBar
-            navigation={props.navigation}
-            selectedIcon={'summary'}
-          />
+            <Text> No data present</Text>
+
+            <BottomTabBar
+              navigation={props.navigation}
+              selectedIcon={'summary'}
+            />
           </>
         )}
       </View>
