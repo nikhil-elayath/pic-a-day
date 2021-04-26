@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import {TouchableOpacity, View} from 'react-native';
+import {TouchableOpacity, View, Image} from 'react-native';
 import BottomTabBar from '../reuseableComponents/BottomTabBar';
 import ImageCard from '../components/ImageCard';
 import HomeStyles from '../assests/styles/components/Home';
@@ -10,9 +10,9 @@ export default function Home(props) {
   const dispatch = useDispatch();
   const store = useSelector(state => state.userEntry);
 
-  useEffect(() => {
+  useEffect(async() => {
     //Navigating to Homescreen after 3 seconds post the screen has loaded
-    dispatch(getAllUserEntry());
+   await dispatch(getAllUserEntry());
   }, []);
 
   const navigateToSpecificDay = item => {
@@ -36,8 +36,10 @@ export default function Home(props) {
         {store.userEntry &&
           store.userEntry.length != 0 &&
           store.userEntry.result.map((item, index) => {
+            // console.log("item home", item)
             return (
-              <TouchableOpacity onPress={() => navigateToSpecificDay(item)}>
+              <TouchableOpacity key={index} onPress={() => navigateToSpecificDay(item)}>
+                {/* <Image source={{width:100, height:100, uri:"file:///data/user/0/com.picaday/cache/Camera/3a72d0e6-898c-4497-9e4b-d58326824529.jpg"}}/> */}
                 <ImageCard
                   key={index}
                   imageSource={item.image_uri}
