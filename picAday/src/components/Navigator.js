@@ -1,5 +1,8 @@
+// The app navigator
+// Hiding and sisplaying the header and its data as per screen design requirements
+// Rendering the Header reuseable compoent within the header tab
+// Intial Route is set to SplashScreen
 import React from 'react';
-import {Image} from 'react-native';
 import SplashScreen from '../screens/SplashScreen';
 import Home from '../screens/Home';
 import SpecificDay from '../screens/SpecificDay';
@@ -9,9 +12,8 @@ import CaptureImage from '../screens/CaptureImage';
 import {createAppContainer} from 'react-navigation';
 import {createStackNavigator} from 'react-navigation-stack';
 import BottomTabBar from '../reuseableComponents/BottomTabBar';
-import BrandText from '../reuseableComponents/BrandText';
 import Header from '../reuseableComponents/Header';
-import ErrorScreen from "../reuseableComponents/ErrorScreen"
+import ErrorScreen from '../reuseableComponents/ErrorScreen';
 
 const navigator = createStackNavigator(
   {
@@ -24,7 +26,7 @@ const navigator = createStackNavigator(
     Home: {
       screen: Home,
       navigationOptions: {
-        header: (props)=><Header showBackButton={false} {...props} />,
+        header: props => <Header showBackButton={false} {...props} />,
       },
     },
     ErrorScreen: {
@@ -39,25 +41,25 @@ const navigator = createStackNavigator(
     Summary: {
       screen: Summary,
       navigationOptions: {
-        header: (props)=><Header showBackButton={false} {...props} />,
+        header: props => <Header showBackButton={false} {...props} />,
       },
     },
     SpecificDay: {
       screen: SpecificDay,
       navigationOptions: {
-        header: (props)=><Header showBackButton={true} {...props} />,
+        header: props => <Header showBackButton={true} {...props} />,
       },
     },
     CaptureImage: {
       screen: CaptureImage,
       navigationOptions: {
-        header: (props)=><Header showBackButton={true} {...props} />,
+        header: props => <Header showBackButton={true} {...props} />,
       },
     },
     DayEditView: {
       screen: DayEditView,
       navigationOptions: {
-        header: (props)=><Header showBackButton={true} {...props} />,
+        header: props => <Header showBackButton={true} {...props} />,
       },
     },
   },
