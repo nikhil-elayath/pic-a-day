@@ -64,6 +64,7 @@ export const updateUserEntryById = data => dispatch => {
 
 // get user entry by id
 export const getUserEntryById = data => dispatch => {
+  console.log("get user ", data)
 
   return axios
     .get(url + '/get-entry/' + data)

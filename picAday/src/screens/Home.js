@@ -1,4 +1,6 @@
 import React, {useEffect} from 'react';
+// import { useHistory } from "react-router-dom";
+
 import {
   TouchableOpacity,
   View,
@@ -14,6 +16,8 @@ import {getAllUserEntry} from '../actions/UserEntry';
 import formatDate from "../middlewares/FormatDate"
 
 export default function Home(props) {
+  // let history = useHistory();
+
   const dispatch = useDispatch();
   const store = useSelector(state => state.userEntry);
   function handleBackButtonClick() {
@@ -35,6 +39,7 @@ export default function Home(props) {
   
 
   const navigateToSpecificDay = item => {
+    console.log("current item", item)
     // logic to check the date and navigate accordingly
     // if date == current date navigate to day edit view as entry is editable
     // otherwise navigate to specific day and editing is not available
@@ -44,6 +49,7 @@ export default function Home(props) {
     if (
       currentDate.toISOString().split('T')[0] == item.entry_date.split('T')[0]
     ) {
+      console.log("same date")
       props.navigation.navigate('DayEditView', {userEntryId: item.id});
     } else {
       props.navigation.navigate('SpecificDay', {item});

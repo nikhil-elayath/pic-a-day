@@ -4,10 +4,10 @@ import {updateUserEntryById, getUserEntryById} from '../actions/UserEntry';
 import {useDispatch, useSelector} from 'react-redux';
 import ImageCard from '../components/ImageCard';
 import DayEditViewStyles from '../assests/styles/screens/DayEditView';
-import formatDate from "../middlewares/FormatDate"
+import formatDate from '../middlewares/FormatDate';
 export default function DayEditView(props) {
   const [showCurrentText, setShowCurrentText] = React.useState(false);
-  const [userEnteredText, setUserEnteredText] = React.useState(false);
+  const [userEnteredText, setUserEnteredText] = React.useState('');
 
   const navigateToScreen = screenName => {
     props.navigation.navigate(screenName, {
@@ -22,19 +22,24 @@ export default function DayEditView(props) {
 
   // use effect to fetch the data by a particular userentry id which is recieved in params from capture iamge image screen4
   useEffect(async () => {
-    {
-      await dispatch(
-        getUserEntryById(
-          props.navigation.navigate &&
-            props.navigation.navigate.state &&
-            props.navigation.navigate.state.params.userEntryId
-            ? props.navigation.navigate.state.params.userEntryId
-            : store.id != undefined && store.id,
-        ),
-      );
-    }
-  }, []);
+    console.log(
+      'day ',
+      props.navigation.navigate &&
+        props.navigation.state 
+        // props.navigation.state.params.userEntryId &&
+        // props.navigation.state.params.userEntryId,
+    );
 
+    props.navigation &&
+    props.navigation.state &&
+    props.navigation.state.params.userEntryId
+      ? await dispatch(
+          getUserEntryById(props.navigation.state.params.userEntryId),
+        )
+      : store.id &&
+        store.id != undefined &&
+        (await dispatch(getUserEntryById(store.id)));
+  }, []);
 
   const onChangeTextValue = async text => {
     await setShowCurrentText(true);
@@ -97,9 +102,11 @@ export default function DayEditView(props) {
             specificUserEntry.result &&
             specificUserEntry.result[0] &&
             specificUserEntry.result[0].image_description &&
-            specificUserEntry.result[0].image_description != 'undefined' 
+            specificUserEntry.result[0].image_description != 'undefined'
               ? specificUserEntry.result[0].image_description
-              : showCurrentText == true && userEnteredText
+              : showCurrentText == true
+              ? userEnteredText
+              : null
           }
           onEndEditing={text => onChangeTextValue(text.nativeEvent.text)}
         />
