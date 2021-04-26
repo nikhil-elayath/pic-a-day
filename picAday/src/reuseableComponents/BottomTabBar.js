@@ -3,7 +3,6 @@ import {View, Text, TouchableOpacity, Image} from 'react-native';
 import BottomTabBarStyles from '../assests/styles/reuseableComponents/BottomTabBar';
 import {bottomTabBar} from '../assests/Icons';
 
-
 export default function BottomTabBar(props) {
   const navigateToScreen = screenName => {
     props.navigation.navigate(screenName);
@@ -22,7 +21,13 @@ export default function BottomTabBar(props) {
     <View style={BottomTabBarStyles.mainContainer}>
       <View style={BottomTabBarStyles.bottomMenu}>
         <TouchableOpacity onPress={() => navigateToScreen('Home')}>
-          <Image source={bottomTabBar.homeIcon} />
+          <Image
+            source={
+              props.selectedIcon == 'home'
+                ? bottomTabBar.homeIcon
+                : bottomTabBar.homeIconLine
+            }
+          />
         </TouchableOpacity>
         <TouchableOpacity
           onPress={() => navigateToScreen('CaptureImage')}
@@ -30,7 +35,13 @@ export default function BottomTabBar(props) {
           <Image source={bottomTabBar.addEntryIcon} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => navigateToScreen('Summary')}>
-          <Image source={bottomTabBar.summaryIcon} />
+          <Image
+            source={
+              props.selectedIcon == 'summary'
+                ? bottomTabBar.summaryIcon
+                : bottomTabBar.summaryIconLine
+            }
+          />
         </TouchableOpacity>
       </View>
     </View>
