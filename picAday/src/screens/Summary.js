@@ -64,7 +64,7 @@ export default function Summary(props) {
             </Text>
           </View>
         </View>
-        <BottomTabBar navigation={props.navigation} />
+        <BottomTabBar navigation={props.navigation} selectedIcon={"summary"}/>
 
       </View>
       

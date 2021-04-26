@@ -1,5 +1,7 @@
 import homeIcon from '../assests/icons/homeIconFilled.png';
-import summaryIcon from '../assests/icons/summaryIcon.png';
+import homeIconLine from '../assests/icons/homeIconLine.png';
+import summaryIcon from '../assests/icons/summaryIconFilled.png';
+import summaryIconLine from '../assests/icons/summaryIconLine.png';
 import backIcon from '../assests/icons/backIcon.png';
 import addEntryIcon from '../assests/icons/addEntryIcon.png';
 import captureImageIcon from '../assests/icons/captureImageIcon.png';
@@ -11,6 +13,8 @@ export const bottomTabBar = {
   summaryIcon,
   addEntryIcon,
   captureImageIcon,
+  homeIconLine,
+  summaryIconLine
 };
 export const header = {
   backIcon,

@@ -66,7 +66,7 @@ export default function Home(props) {
             );
           })}
       </View>
-      <BottomTabBar navigation={props.navigation} />
+      <BottomTabBar navigation={props.navigation} selectedIcon={"home"}/>
     </View>
   );
 }
