@@ -10,7 +10,6 @@ export default function DayEditView(props) {
   const [userEnteredText, setUserEnteredText] = React.useState(false);
 
   const navigateToScreen = screenName => {
-    console.log('button presses');
     props.navigation.navigate(screenName, {
       imageData: specificUserEntry.result[0],
     });
@@ -104,7 +103,7 @@ export default function DayEditView(props) {
             specificUserEntry.result &&
             specificUserEntry.result[0] &&
             specificUserEntry.result[0].image_description &&
-            specificUserEntry.result[0].image_description != 'undefined'
+            specificUserEntry.result[0].image_description != 'undefined' 
               ? specificUserEntry.result[0].image_description
               : showCurrentText == true && userEnteredText
           }

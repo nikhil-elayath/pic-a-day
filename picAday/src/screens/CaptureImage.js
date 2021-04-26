@@ -17,7 +17,7 @@ export default function CaptureImage(props) {
 
       // getting the location
       await Geolocation.getCurrentPosition(async position => {
-        const url = `https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?apiKey=3CG6vEWHqA2AhpkyTKn2kDhESI78TwNvV-uBrWzA6SY&mode=retrieveAddresses&prox=${position.coords.latitude},${position.coords.longitude}`;
+        const url = `https://reverse.geocoder.ls.hereapi.com/6.2/reversegeocode.json?apiKey=C2i31ZIVgkgcqcOwb8qV2Xh2FDDpc4DWUnL-0TWOnL4&mode=retrieveAddresses&prox=${position.coords.latitude},${position.coords.longitude}`;
         await fetch(url)
           .then(resJson => resJson.json())
           .then(async resJson => {
