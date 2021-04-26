@@ -11,11 +11,10 @@ import ImageCard from '../components/ImageCard';
 import HomeStyles from '../assests/styles/components/Home';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllUserEntry} from '../actions/UserEntry';
-import formatDate from "../middlewares/FormatDate"
+import formatDate from '../middlewares/FormatDate';
 import ErrorScreen from '../reuseableComponents/ErrorScreen';
 
 export default function Home(props) {
-
   const dispatch = useDispatch();
   const store = useSelector(state => state.userEntry);
   function handleBackButtonClick() {
@@ -24,7 +23,6 @@ export default function Home(props) {
   }
 
   useEffect(async () => {
-    console.log("store",store)
     // action call that will get all the user entries
     await dispatch(getAllUserEntry());
 
@@ -36,10 +34,8 @@ export default function Home(props) {
       );
     };
   }, []);
-  
 
   const navigateToSpecificDay = item => {
-    console.log("current item", item)
     // logic to check the date and navigate accordingly
     // if date == current date navigate to day edit view as entry is editable
     // otherwise navigate to specific day and editing is not available
@@ -49,7 +45,6 @@ export default function Home(props) {
     if (
       currentDate.toISOString().split('T')[0] == item.entry_date.split('T')[0]
     ) {
-      console.log("same date")
       props.navigation.navigate('DayEditView', {userEntryId: item.id});
     } else {
       props.navigation.navigate('SpecificDay', {item});
@@ -57,34 +52,36 @@ export default function Home(props) {
   };
   return (
     <View style={{flex: 1}}>
-      {store.error!=""? <ErrorScreen/>:
-      <View>
-      <View style={HomeStyles.imageContainer}>
-        <ScrollView style={{height: '100%'}}>
-          {store.userEntry &&
-            store.userEntry.length != 0 &&
-            store.userEntry.result.map((item, index) => {
-              return (
-                <TouchableOpacity
-                  key={index}
-                  style={{height: 250}}
-                  onPress={() => navigateToSpecificDay(item)}>
-                  <ImageCard
-                    key={index}
-                    imageSource={item.image_uri}
-                    location={item.image_location}
-                    month={formatDate(item.entry_date, 'month')}
-                    date={formatDate(item.entry_date, 'date')}
-                    temperature={item.temperature}
-                  />
-                </TouchableOpacity>
-              );
-            })}
-        </ScrollView>
-      </View>
-      <BottomTabBar navigation={props.navigation} selectedIcon={'home'} />
+      {store.error != '' ? (
+        <ErrorScreen />
+      ) : (
+        <View>
+          <View style={HomeStyles.imageContainer}>
+            <ScrollView style={{height: '100%'}}>
+              {store.userEntry &&
+                store.userEntry.length != 0 &&
+                store.userEntry.result.map((item, index) => {
+                  return (
+                    <TouchableOpacity
+                      key={index}
+                      style={{height: 250}}
+                      onPress={() => navigateToSpecificDay(item)}>
+                      <ImageCard
+                        key={index}
+                        imageSource={item.image_uri}
+                        location={item.image_location}
+                        month={formatDate(item.entry_date, 'month')}
+                        date={formatDate(item.entry_date, 'date')}
+                        temperature={item.temperature}
+                      />
+                    </TouchableOpacity>
+                  );
+                })}
+            </ScrollView>
+          </View>
+          <BottomTabBar navigation={props.navigation} selectedIcon={'home'} />
+        </View>
+      )}
     </View>
-}
-      </View>
   );
 }
