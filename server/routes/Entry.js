@@ -9,7 +9,7 @@ router.get("/all-entry", async (req, res, next) => {
 
   try {
     const result = await db.any(`select * from user_entry`);
-    // console.log("result", result)
+    console.log("result", result)
     if (result.length == 0) {
       res.status(400).json({
         status: 400,
@@ -77,18 +77,19 @@ router.post("/create-entry", async (req, res, next) => {
   }
 
   try {
-    var date = new Date();
+    var dateValue = new Date().toISOString();
+    console.log("date", dateValue)
 
-    var mon = "" + (date.getMonth() + 1);
-    var dy = "" + (date.getDate() + 1);
-    var yr = date.getFullYear();
+    // var mon = "" + (date.getMonth() );
+    // var dy = "" + (date.getDate() );
+    // var yr = date.getFullYear();
 
-    if (mon.length < 2) mon = "0" + mon;
-    if (dy.length < 2) dy = "0" + dy;
+    // if (mon.length < 2) mon = "0" + mon;
+    // if (dy.length < 2) dy = "0" + dy;
 
-    let userEntryDate = [yr, mon, dy].join("-");
+    // let userEntryDate = [yr, mon, dy].join("-");
     const result = await db.any(
-      `INSERT INTO user_entry(image_uri, image_description, entry_date, image_location, temperature) VALUES('${imageUri}', '${imageDescription}','${userEntryDate}','${imageLocation}','${imageTemperature}')  RETURNING id`
+      `INSERT INTO user_entry(image_uri, image_description, entry_date, image_location, temperature) VALUES('${imageUri}', '${imageDescription}','${dateValue}','${imageLocation}','${imageTemperature}')  RETURNING id`
     );
     console.log("redult", result);
     res.status(200).json({
