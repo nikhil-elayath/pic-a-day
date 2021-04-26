@@ -1,10 +1,9 @@
 import React from 'react';
 import {View, Text, TouchableOpacity} from 'react-native';
 import ImageCard from '../components/ImageCard';
-import {homepage} from '../assests/Icons';
 import SpecificDayStyles from '../assests/styles/components/SpecificDay';
-import BottomTabBar from '../reuseableComponents/BottomTabBar';
 import {useDispatch, useSelector} from 'react-redux';
+import formatDate from '../middlewares/FormatDate';
 
 export default function SpecificDay(props) {
   console.log('from specifc', props.navigation.state.params.item);
@@ -16,7 +15,8 @@ export default function SpecificDay(props) {
         <ImageCard
           imageSource={props.navigation.state.params.item.image_uri}
           location={props.navigation.state.params.item.image_location}
-          date={props.navigation.state.params.item.entry_date}
+          month={formatDate(props.navigation.state.params.item.entry_date, 'month')}
+          date={formatDate(props.navigation.state.params.item.entry_date, 'date')}
           temperature={props.navigation.state.params.item.temperature}
         />
       </View>
