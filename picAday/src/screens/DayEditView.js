@@ -4,8 +4,7 @@ import {updateUserEntryById, getUserEntryById} from '../actions/UserEntry';
 import {useDispatch, useSelector} from 'react-redux';
 import ImageCard from '../components/ImageCard';
 import DayEditViewStyles from '../assests/styles/screens/DayEditView';
-import BottomTabBar from '../reuseableComponents/BottomTabBar';
-
+import formatDate from "../middlewares/FormatDate"
 export default function DayEditView(props) {
   const [showCurrentText, setShowCurrentText] = React.useState(false);
   const [userEnteredText, setUserEnteredText] = React.useState(false);
@@ -76,11 +75,18 @@ export default function DayEditView(props) {
             specificUserEntry.result[0] &&
             specificUserEntry.result[0].image_location
           }
-          date={
+          month={formatDate(
             specificUserEntry.result &&
-            specificUserEntry.result[0] &&
-            specificUserEntry.result[0].entry_date
-          }
+              specificUserEntry.result[0] &&
+              specificUserEntry.result[0].entry_date,
+            'month',
+          )}
+          date={formatDate(
+            specificUserEntry.result &&
+              specificUserEntry.result[0] &&
+              specificUserEntry.result[0].entry_date,
+            'date',
+          )}
           temperature={
             specificUserEntry.result &&
             specificUserEntry.result[0] &&
