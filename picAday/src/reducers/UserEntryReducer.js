@@ -3,6 +3,7 @@ import {
   CREATE_USER_ENTRY,
   GET_USER_ENTRY_BY_ID,
   GET_SUMMARY_DATA,
+  ERROR
 } from '../actions/Types';
 
 const initalState = {
@@ -10,6 +11,7 @@ const initalState = {
   userEntryId: '',
   specificUserEntry: [],
   summaryData: [],
+  error:""
 };
 
 export default function (state = initalState, action) {
@@ -33,6 +35,12 @@ export default function (state = initalState, action) {
       return {
         ...state,
         summaryData: action.payload,
+      };
+    case ERROR:
+      console.log("reducer", action.payload)
+      return {
+        ...state,
+        error: action.payload,
       };
     default:
       return state;

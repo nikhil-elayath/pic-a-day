@@ -1,6 +1,4 @@
 import React, {useEffect} from 'react';
-// import { useHistory } from "react-router-dom";
-
 import {
   TouchableOpacity,
   View,
@@ -14,9 +12,9 @@ import HomeStyles from '../assests/styles/components/Home';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllUserEntry} from '../actions/UserEntry';
 import formatDate from "../middlewares/FormatDate"
+import ErrorScreen from '../reuseableComponents/ErrorScreen';
 
 export default function Home(props) {
-  // let history = useHistory();
 
   const dispatch = useDispatch();
   const store = useSelector(state => state.userEntry);
@@ -26,8 +24,10 @@ export default function Home(props) {
   }
 
   useEffect(async () => {
-    //Navigating to Homescreen after 3 seconds post the screen has loaded
+    console.log("store",store)
+    // action call that will get all the user entries
     await dispatch(getAllUserEntry());
+
     BackHandler.addEventListener('hardwareBackPress', handleBackButtonClick);
     return () => {
       BackHandler.removeEventListener(
@@ -57,6 +57,8 @@ export default function Home(props) {
   };
   return (
     <View style={{flex: 1}}>
+      {store.error!=""? <ErrorScreen/>:
+      <View>
       <View style={HomeStyles.imageContainer}>
         <ScrollView style={{height: '100%'}}>
           {store.userEntry &&
@@ -82,5 +84,7 @@ export default function Home(props) {
       </View>
       <BottomTabBar navigation={props.navigation} selectedIcon={'home'} />
     </View>
+}
+      </View>
   );
 }

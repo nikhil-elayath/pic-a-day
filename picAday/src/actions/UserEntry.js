@@ -4,22 +4,18 @@ import {
   UPDATE_USER_ENTRY_BY_ID,
   GET_USER_ENTRY_BY_ID,
   GET_SUMMARY_DATA,
+  ERROR,
 } from './Types';
 
 import axios from 'axios';
 import config from '../config';
 const url = config.url + 'entry';
-console.log('url', url);
 
+// action that will fetch all the user entries from the data base
+// takes no parameter
 export const getAllUserEntry = () => async dispatch => {
   return axios
-    .get(url+'/all-entry', {
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-        'Accept': 'application/json',
-        'Access-Control-Allow-Origin':"*"
-      },
-    })
+    .get(url + '/all-entry')
     .then(res => {
       dispatch({
         type: GET_ALL_USER_ENTRY,
@@ -27,12 +23,10 @@ export const getAllUserEntry = () => async dispatch => {
       });
     })
     .catch(err => {
-      console.log('error from action', err);
-      // dispatch({type: ERROR, payload: err.response.data.message});
+      dispatch({type: ERROR, payload: err});
     });
 };
 export const createUserEntry = newData => dispatch => {
-
   return axios
     .post(url + '/create-entry', newData)
     .then(res => {
@@ -42,12 +36,10 @@ export const createUserEntry = newData => dispatch => {
       });
     })
     .catch(err => {
-      console.log('error from action', err);
-      // dispatch({type: ERROR, payload: err.response.data.message});
+      dispatch({type: ERROR, payload: err});
     });
 };
 export const updateUserEntryById = data => dispatch => {
-
   return axios
     .put(url + '/update-entry', data)
     .then(res => {
@@ -57,14 +49,13 @@ export const updateUserEntryById = data => dispatch => {
       });
     })
     .catch(err => {
-      console.log('error from action', err);
-      // dispatch({type: ERROR, payload: err.response.data.message});
+      dispatch({type: ERROR, payload: err});
     });
 };
 
 // get user entry by id
 export const getUserEntryById = data => dispatch => {
-  console.log("get user ", data)
+  console.log('get user ', data);
 
   return axios
     .get(url + '/get-entry/' + data)
@@ -75,14 +66,12 @@ export const getUserEntryById = data => dispatch => {
       });
     })
     .catch(err => {
-      console.log('error from action', err);
-      // dispatch({type: ERROR, payload: err.response.data.message});
+      dispatch({type: ERROR, payload: err});
     });
 };
 
 //fetching the summary data
 export const getSummaryData = () => dispatch => {
-
   return axios
     .get(url + '/get-summary')
     .then(res => {
@@ -92,7 +81,6 @@ export const getSummaryData = () => dispatch => {
       });
     })
     .catch(err => {
-      console.log('error from action', err);
-      // dispatch({type: ERROR, payload: err.response.data.message});
+      dispatch({type: ERROR, payload: err});
     });
 };
