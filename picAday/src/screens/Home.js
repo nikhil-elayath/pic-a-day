@@ -11,6 +11,7 @@ import ImageCard from '../components/ImageCard';
 import HomeStyles from '../assests/styles/components/Home';
 import {useDispatch, useSelector} from 'react-redux';
 import {getAllUserEntry} from '../actions/UserEntry';
+import formatDate from "../middlewares/FormatDate"
 
 export default function Home(props) {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ export default function Home(props) {
       );
     };
   }, []);
+  
 
   const navigateToSpecificDay = item => {
     // logic to check the date and navigate accordingly
@@ -54,7 +56,7 @@ export default function Home(props) {
           {store.userEntry &&
             store.userEntry.length != 0 &&
             store.userEntry.result.map((item, index) => {
-              // console.log("item home", item)
+              console.log('item home', typeof item.entry_date);
               return (
                 <TouchableOpacity
                   key={index}
@@ -64,7 +66,8 @@ export default function Home(props) {
                     key={index}
                     imageSource={item.image_uri}
                     location={item.image_location}
-                    date={item.entry_date}
+                    month={formatDate(item.entry_date, 'month')}
+                    date={formatDate(item.entry_date, 'date')}
                     temperature={item.temperature}
                   />
                 </TouchableOpacity>

@@ -38,6 +38,7 @@ export default function ImageCard(props) {
         source={{width: 100, height: 200, uri: props.imageSource}}
         style={ImageCardStyles.image}>
         <View style={ImageCardStyles.dateContainer}>
+          <Text style={ImageCardStyles.dateText}>{props.month} </Text>
           <Text style={ImageCardStyles.dateText}>{props.date} </Text>
         </View>
         <View style={ImageCardStyles.bottomMainContainer}>
