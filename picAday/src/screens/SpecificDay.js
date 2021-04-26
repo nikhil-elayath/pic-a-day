@@ -23,8 +23,6 @@ export default function SpecificDay(props) {
       <View style={SpecificDayStyles.textContainer}>
         <Text>{props.navigation.state.params.item.image_description} </Text>
       </View>
-
-      <BottomTabBar navigation={props.navigation} />
     </View>
   );
 }
