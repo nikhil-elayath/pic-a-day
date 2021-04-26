@@ -24,7 +24,6 @@ router.get("/all-entry", async (req, res, next) => {
 
 // get user entry by id
 router.get("/get-entry/:id", async (req, res, next) => {
-  console.log("get entry by id", req.params);
 
   try {
     var userEntryId = req.params.id;
@@ -47,8 +46,6 @@ router.get("/get-entry/:id", async (req, res, next) => {
 
 // create a new entry
 router.post("/create-entry", async (req, res, next) => {
-  console.log("create entry api", req.body);
-
   try {
     var imageUri = req.body.imageUri;
     var imageDescription = req.body.imageDescription;
@@ -63,11 +60,9 @@ router.post("/create-entry", async (req, res, next) => {
 
   try {
     var dateValue = new Date().toISOString();
-
     const result = await db.any(
       `INSERT INTO user_entry(image_uri, image_description, entry_date, image_location, temperature) VALUES('${imageUri}', '${imageDescription}','${dateValue}','${imageLocation}','${imageTemperature}')  RETURNING id`
     );
-    console.log("redult", result);
     res.status(200).json({
       status: 200,
       message: "Created entry successfully",
@@ -83,7 +78,6 @@ router.post("/create-entry", async (req, res, next) => {
 });
 
 router.put("/update-entry", async (req, res, next) => {
-  console.log("update entry api", req.body);
 
   try {
     var imageUri = req.body.imageUri;
@@ -98,7 +92,6 @@ router.put("/update-entry", async (req, res, next) => {
 
   try {
     var dateValue = new Date().toISOString();
-
     const result = await db.any(
       `update user_entry set image_uri='${imageUri}', image_description='${imageDescription}', entry_date='${dateValue}' where id = '${userEntryId}';`
     );
@@ -118,7 +111,6 @@ router.put("/update-entry", async (req, res, next) => {
 
 // getting the summary details
 router.get("/get-summary", async (req, res, next) => {
-  console.log("get-summaryy api");
   var days = [
     "Sunday",
     "Monday",
@@ -157,25 +149,19 @@ router.get("/get-summary", async (req, res, next) => {
     // making sure there are entries present inside the result
     if (result.length != 0) {
       // getting the first entry made by the user and using the date
-      dateOfFirstUserEntry = result[0].entry_date;
+      dateOfFirstUserEntry = new Date(result[0].entry_date);
       // getting the streak count
       const diffTime = Math.abs(dateOfFirstUserEntry - currentDate);
       numberOfDaysSinceFirstEntry = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       // fetched the temperature data in descending order
       // so first entry has highest temp and last entry has least temp
-   
-      var weekDay =
-        days[temperatureData[temperatureData.length - 1].entry_date.getDay()];
-      var nameOfTheMonth =
-        months[
-          temperatureData[temperatureData.length - 1].entry_date.getMonth()
-        ];
-      var dateOfTheEntry = temperatureData[
-        temperatureData.length - 1
-      ].entry_date.getDate();
-      var yearOfTheEntry = temperatureData[
-        temperatureData.length - 1
-      ].entry_date.getFullYear();
+      var dateOfLastEntry = new Date(
+        temperatureData[temperatureData.length - 1].entry_date
+      );
+      var weekDay = days[dateOfLastEntry.getDay()];
+      var nameOfTheMonth = months[dateOfLastEntry.getMonth()];
+      var dateOfTheEntry = dateOfLastEntry.getDate();
+      var yearOfTheEntry = dateOfLastEntry.getFullYear();
       lowestTemperatureData = {
         lowestTemperature:
           temperatureData[temperatureData.length - 1].temperature,
@@ -188,10 +174,12 @@ router.get("/get-summary", async (req, res, next) => {
           "," +
           yearOfTheEntry,
       };
-      var weekDay = days[temperatureData[0].entry_date.getDay()];
-      var nameOfTheMonth = months[temperatureData[0].entry_date.getMonth()];
-      var dateOfTheEntry = temperatureData[0].entry_date.getDate();
-      var yearOfTheEntry = temperatureData[0].entry_date.getFullYear();
+      var dateOfFirstEntry = new Date(temperatureData[0].entry_date);
+
+      var weekDay = days[dateOfFirstEntry.getDay()];
+      var nameOfTheMonth = months[dateOfFirstEntry.getMonth()];
+      var dateOfTheEntry = dateOfFirstEntry.getDate();
+      var yearOfTheEntry = dateOfFirstEntry.getFullYear();
       highestTemperatureData = {
         highestTemperature: temperatureData[0].temperature,
         highestTemperatureDate:
