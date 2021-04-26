@@ -4,7 +4,6 @@ const db = require("../db-init/dbConn");
 
 // api to get all the user entry
 router.get("/all-entry", async (req, res, next) => {
-  console.log("all entry api");
 
   try {
     const result = await db.any(`select * from user_entry`);
