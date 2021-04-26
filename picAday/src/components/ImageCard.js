@@ -35,7 +35,7 @@ export default function ImageCard(props) {
   return (
     <View style={ImageCardStyles.mainContainer}>
       <ImageBackground
-        source={{width: 100, height: 100, uri: props.imageSource}}
+        source={{width: 100, height: 200, uri: props.imageSource}}
         style={ImageCardStyles.image}>
         <View style={ImageCardStyles.dateContainer}>
           <Text style={ImageCardStyles.dateText}>{props.date} </Text>

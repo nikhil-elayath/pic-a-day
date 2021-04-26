@@ -1,5 +1,11 @@
 import React, {useEffect} from 'react';
-import {TouchableOpacity, View, Image, BackHandler} from 'react-native';
+import {
+  TouchableOpacity,
+  View,
+  Image,
+  BackHandler,
+  ScrollView,
+} from 'react-native';
 import BottomTabBar from '../reuseableComponents/BottomTabBar';
 import ImageCard from '../components/ImageCard';
 import HomeStyles from '../assests/styles/components/Home';
@@ -10,9 +16,7 @@ export default function Home(props) {
   const dispatch = useDispatch();
   const store = useSelector(state => state.userEntry);
   function handleBackButtonClick() {
-    // props.navigation.goBack();
-    props.navigation.push('Home') 
-
+    props.navigation.push('Home');
     return true;
   }
 
@@ -46,27 +50,29 @@ export default function Home(props) {
   return (
     <View style={{flex: 1}}>
       <View style={HomeStyles.imageContainer}>
-        {store.userEntry &&
-          store.userEntry.length != 0 &&
-          store.userEntry.result.map((item, index) => {
-            // console.log("item home", item)
-            return (
-              <TouchableOpacity
-                key={index}
-                onPress={() => navigateToSpecificDay(item)}>
-                {/* <Image source={{width:100, height:100, uri:"file:///data/user/0/com.picaday/cache/Camera/3a72d0e6-898c-4497-9e4b-d58326824529.jpg"}}/> */}
-                <ImageCard
+        <ScrollView style={{height: '100%'}}>
+          {store.userEntry &&
+            store.userEntry.length != 0 &&
+            store.userEntry.result.map((item, index) => {
+              // console.log("item home", item)
+              return (
+                <TouchableOpacity
                   key={index}
-                  imageSource={item.image_uri}
-                  location={item.image_location}
-                  date={item.entry_date}
-                  temperature={item.temperature}
-                />
-              </TouchableOpacity>
-            );
-          })}
+                  style={{height: 250}}
+                  onPress={() => navigateToSpecificDay(item)}>
+                  <ImageCard
+                    key={index}
+                    imageSource={item.image_uri}
+                    location={item.image_location}
+                    date={item.entry_date}
+                    temperature={item.temperature}
+                  />
+                </TouchableOpacity>
+              );
+            })}
+        </ScrollView>
       </View>
-      <BottomTabBar navigation={props.navigation} selectedIcon={"home"}/>
+      <BottomTabBar navigation={props.navigation} selectedIcon={'home'} />
     </View>
   );
 }
